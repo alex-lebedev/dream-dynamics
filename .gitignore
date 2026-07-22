@@ -1,0 +1,54 @@
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.env
+.python-version
+
+# --- secrets: NEVER commit (use env vars or a secrets manager) ---
+*.key
+*.pem
+secrets.*
+.secrets/
+credentials.json
+
+# ======================================================================
+# DATA POLICY (see docs/ETHICS.md)
+#   Raw dream text + user identifiers are S3 and are NEVER committed.
+#   Only de-identified aggregates (small CSV/MD) + figures are tracked.
+# ======================================================================
+10-data/raw/
+10-data/external/
+10-data/interim/
+
+# user-level PII (userID / name / email / birthdate / sex) — NEVER commit
+**/*users_data*.csv
+# raw dream text + interpretation + userID (S3) — NEVER commit
+**/*dreams_data*.csv
+
+# large binary data artifacts (rebuild from scripts)
+*.parquet
+*.npz
+*.mdb
+*.zst
+*.tar.xz
+*.h5
+*.hdf5
+*.pkl
+*.feather
+
+# run/scoring logs (transient)
+*.log
