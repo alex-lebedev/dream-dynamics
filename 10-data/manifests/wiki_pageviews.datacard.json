@@ -1,0 +1,41 @@
+{
+  "name": "wiki_pageviews",
+  "source": "https://wikimedia.org/api/rest_v1/metrics/pageviews (Wikimedia REST)",
+  "license": "CC0 (Wikimedia)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "Daily EN Wikipedia pageviews for crisis/hope articles (collective attention). No key.",
+  "caveats": "Pageview counts are spiky (news-driven) and subject to Wikimedia bot-filtering/traffic changes over time; article set is a hand-picked crisis/hope basket (selection-dependent); the derived index (log1p -> per-article z -> average within category) lives in analysis code (2026-07-20-11), not in this file.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/wiki_pageviews.csv",
+  "bytes": 528373,
+  "size": "516.0KB",
+  "sha256": "3b47c8accb362b39d29e08865b2d670a950697b3b4f0a7ef9fec9437db882cdb",
+  "rows": 15759,
+  "articles": [
+    "Bankruptcy",
+    "Climate_change",
+    "Economic_collapse",
+    "Gratitude",
+    "Great_Depression",
+    "Happiness",
+    "Hope",
+    "Inflation",
+    "Layoff",
+    "Nuclear_warfare",
+    "Optimism",
+    "Pandemic",
+    "Recession",
+    "Stock_market_crash",
+    "Unemployment",
+    "War",
+    "World_War_III"
+  ],
+  "columns": [
+    "date",
+    "article",
+    "category",
+    "views"
+  ],
+  "date_min": "2024-01-01",
+  "date_max": "2026-07-15"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "fred_UNRATE",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series UNRATE | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_UNRATE.csv",
+  "bytes": 14141,
+  "size": "13.8KB",
+  "sha256": "f8f2473ca57e9eaf7bd42718a9b836c105e093ab733b756e7fb63882905c0834",
+  "rows": 941,
+  "date_min": "1948-01-01",
+  "date_max": "2026-06-01",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "Unemployment rate; MONTHLY; percent; seasonally adjusted."
+}

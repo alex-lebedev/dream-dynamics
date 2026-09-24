@@ -1,0 +1,12 @@
+{
+  "name": "dreamseer_sentiment",
+  "source": "DreamSeer text + cardiffnlp/twitter-xlm-roberta-base-sentiment",
+  "license": "private",
+  "sensitivity": "S1 (daily) / S3 (per-dream)",
+  "retrieved": "2026-07-18",
+  "notes": "model-based multilingual sentiment; 30241 dreams",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/processed/dreams/dreamseer_sentiment_daily.csv",
+  "bytes": 200868,
+  "size": "196.2KB",
+  "sha256": "9453614ce747f4e46e5da86093f1a70226773f9343cb17eb235a540fe2ff69e9"
+}

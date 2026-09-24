@@ -65,6 +65,61 @@ def load_or_build_sentence_sentiment(field: str = "text", min_sent: int = 5, max
     return docs, counts, sent
 
 
+def load_or_build_dreamseer_all(min_sent: int = 4, max_sent: int = 25, start: str = "2024-03-01",
+                                rebuild: bool = False, batch: int = 128):
+    """True per-sentence XLM-R for EVERY Dreamseer report in the dense window.
+
+    `load_or_build_sentence_sentiment` scores a language-stratified 3,000-document sample per
+    language, which is enough to characterise the average trajectory and far too thin to ask
+    whether trajectory shape *varies over calendar time*: 3,000 English documents spread over 28
+    months is roughly 100 per month. This scores the whole window instead, so that the arrow can
+    be estimated as a monthly or weekly population series rather than as a corpus constant.
+
+    Returns (docs, counts, vals) where `vals` is sentence-contiguous in `docs` order. The cache
+    holds documentID, per-document sentence counts and per-sentence scores — no text, no user key
+    (docs/ETHICS.md S1); callers re-attach date and contributor in memory from the dream-level
+    table.
+    """
+    from .fast_sentiment import score_sentences
+
+    cache = C.INTERIM / f"true_xlmr_ds_all_ms{min_sent}_c{max_sent}.npz"
+    import pandas as pd
+    lv = pd.read_parquet(C.DREAMS_OUT / "dreamseer_dream_level.parquet",
+                         columns=["documentID", "date"])
+    lv["date"] = pd.to_datetime(lv["date"])
+    lv = lv[lv.date >= start]
+    fmap = _raw_field(lv.documentID.values, "text")
+
+    keep_docs, counts, flat = [], [], []
+    for d in lv.documentID.values:
+        ss = split_sentences(fmap.get(d, ""), min_words=2)[:max_sent]
+        if len(ss) < min_sent:
+            continue
+        keep_docs.append(d)
+        counts.append(len(ss))
+        flat.extend(ss)
+    docs = np.array(keep_docs)
+    counts = np.array(counts, dtype=np.int32)
+
+    if cache.exists() and not rebuild:
+        z = np.load(cache, allow_pickle=True)
+        if len(z["docs"]) == len(docs) and bool((z["docs"] == docs).all()):
+            return docs, counts, z["vals"].astype(np.float32)
+        print(f"[ds_all] cache stale -> rescore", flush=True)
+
+    print(f"[ds_all] scoring {len(flat):,} sentences from {len(docs):,} documents", flush=True)
+    vals = score_sentences(flat, batch=batch).astype(np.float32)
+    C.INTERIM.mkdir(parents=True, exist_ok=True)
+    np.savez(cache, docs=docs, counts=counts, vals=vals)
+    print(f"[ds_all] wrote {cache}", flush=True)
+    return docs, counts, vals
+
+
 if __name__ == "__main__":
-    d, c, s = load_or_build_sentence_sentiment("text", min_sent=5)
-    print(f"[sent_sent] scored sentences: {np.isfinite(s).sum()} / {len(s)}")
+    import sys
+    if "--all" in sys.argv:
+        d, c, v = load_or_build_dreamseer_all()
+        print(f"[ds_all] docs={len(d)} sentences={len(v)} finite={np.isfinite(v).sum()}")
+    else:
+        d, c, s = load_or_build_sentence_sentiment("text", min_sent=5)
+        print(f"[sent_sent] scored sentences: {np.isfinite(s).sum()} / {len(s)}")

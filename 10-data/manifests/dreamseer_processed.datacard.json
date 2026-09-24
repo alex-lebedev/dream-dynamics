@@ -1,0 +1,15 @@
+{
+  "name": "dreamseer_processed",
+  "source": "DreamSeer app export (private)",
+  "license": "private",
+  "sensitivity": "S1 (aggregates) / S3 (dream-level parquet)",
+  "retrieved": "2026-07-18",
+  "notes": "Daily/weekly de-identified aggregates + gitignored per-dream parquet.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/processed/dreams/dreamseer_daily.csv",
+  "bytes": 1445585,
+  "size": "1.4MB",
+  "sha256": "b17a14717522040f74030d855fbb254c788f7bdcbecae76056311c2635e15f59",
+  "n_dreams": 30241,
+  "n_users": 5524,
+  "lang_backend": "heuristic(cyrillic+nonascii)"
+}

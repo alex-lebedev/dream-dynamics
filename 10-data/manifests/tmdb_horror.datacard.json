@@ -1,0 +1,20 @@
+{
+  "name": "tmdb_horror",
+  "source": "https://api.themoviedb.org/3/discover/movie",
+  "license": "TMDB API ToS",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "Monthly horror-genre SHARE of film releases (collective-anxiety-in-culture proxy). Keyed (TMDB free).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/tmdb_horror.csv",
+  "bytes": 1145,
+  "size": "1.1KB",
+  "sha256": "ea010a49814a076991a04b54323a81421274fe3af70eca9c22629db1e770aadf",
+  "rows": 31,
+  "columns": [
+    "date",
+    "horror",
+    "total",
+    "horror_share"
+  ],
+  "caveats": "Release counts (vote_count>=5) are TMDB-catalog-dependent and revise as metadata is added; recent months undercount (lag). Global, not per-country."
+}

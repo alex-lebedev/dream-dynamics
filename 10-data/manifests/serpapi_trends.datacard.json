@@ -1,0 +1,26 @@
+{
+  "name": "serpapi_trends",
+  "source": "https://serpapi.com/search?engine=google_trends",
+  "license": "SerpApi ToS",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "US Google-Trends interest for worry terms (weekly, 0-100). Keyed (SerpApi free tier). Solves the pytrends datacenter-IP 429.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/serpapi_trends.csv",
+  "bytes": 14638,
+  "size": "14.3KB",
+  "sha256": "5325a94d987888f39192c4826ae7d318d412304304d1c769a1a5a0665b6afabc",
+  "rows": 665,
+  "terms": [
+    "recession",
+    "layoffs",
+    "inflation",
+    "war",
+    "anxiety"
+  ],
+  "columns": [
+    "date",
+    "query",
+    "value"
+  ],
+  "caveats": "Each term is fetched SEPARATELY -> each series is 0-100 within its OWN window (not cross-term normalized); the analysis z-scores per term and averages worry terms into an index. Values are relative search interest, not absolute volume; US/EN only."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "fred_VIXCLS",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "FRED series VIXCLS",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_VIXCLS.csv",
+  "bytes": 155967,
+  "size": "152.3KB",
+  "sha256": "490667ad0811a9e1dee92a918535ac091d719a0e72ffa59c05e7a25b26d17cdf",
+  "rows": 9231,
+  "date_min": "1990-01-02",
+  "date_max": "2026-07-16"
+}

@@ -1,0 +1,49 @@
+{
+  "output_parquet": "data/processed/historical_events_terror_attacks_cohort.parquet",
+  "source_core": "data/processed/historical_events_terror_attacks_core.parquet",
+  "rows": 5594,
+  "notes": {
+    "purpose": "Frozen terror_attack cohort (long). Join on event_id.",
+    "cohort_build_version": "2",
+    "cohorts_defined": [
+      {
+        "cohort_id": "gtd_major_fatal_incident_1970_present",
+        "rule": "CHARTER_v1: doubtterr==0 AND extended==0 AND day-known AND nkill>=20 AND iyear>=1970; NOT quality_flags contains 'outside_spine'",
+        "n_members": 2570
+      },
+      {
+        "cohort_id": "gtd_severe_fatal_incident_nkill50_1970_present",
+        "rule": "CHARTER_v1: doubtterr==0 AND extended==0 AND day-known AND nkill>=20 AND iyear>=1970; NOT quality_flags contains 'outside_spine'; terror_nkill >= 50",
+        "n_members": 530
+      },
+      {
+        "cohort_id": "gtd_major_fatal_incident_native_coords_1970_present",
+        "rule": "CHARTER_v1: doubtterr==0 AND extended==0 AND day-known AND nkill>=20 AND iyear>=1970; NOT quality_flags contains 'outside_spine'; terror_geo_match_kind == 'terror_geo_gtd_coordinates'",
+        "n_members": 2494
+      }
+    ],
+    "lattice_note": "Compact v2 lattice: broad headline, severity subset (nkill>=50), and data-quality subset using native GTD coordinates. Natural Earth centroid fallback-only is intentionally not a cohort because it is small and mainly a QA bucket."
+  },
+  "columns": [
+    {
+      "name": "cohort_id",
+      "dtype": "object"
+    },
+    {
+      "name": "cohort_name",
+      "dtype": "object"
+    },
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "inclusion_rule_summary",
+      "dtype": "object"
+    },
+    {
+      "name": "created_at_utc",
+      "dtype": "object"
+    }
+  ]
+}

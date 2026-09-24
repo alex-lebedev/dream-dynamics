@@ -1,0 +1,15 @@
+{
+  "name": "fred_T10Y2Y",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "FRED series T10Y2Y",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_T10Y2Y.csv",
+  "bytes": 201298,
+  "size": "196.6KB",
+  "sha256": "cf67edc91587d6d0ac6801d9c594c25c8afb427cb58aa5565596acf374cd9c4e",
+  "rows": 12528,
+  "date_min": "1976-06-01",
+  "date_max": "2026-07-17"
+}

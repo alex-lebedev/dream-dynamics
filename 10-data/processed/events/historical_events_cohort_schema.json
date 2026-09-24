@@ -1,0 +1,63 @@
+{
+  "output_parquet": "data/processed/historical_events_cohort.parquet",
+  "source_core": "data/processed/historical_events_core.parquet",
+  "rows": 75919,
+  "notes": {
+    "purpose": "Frozen, reproducible cohort membership (long format). Join to historical_events_core / outcome_day / enriched_daily on event_id.",
+    "cohort_build_version": "1",
+    "join_key": "event_id",
+    "grain": "one row per (cohort_id, event_id); cohort_id is a stable slug.",
+    "cohorts_defined": [
+      {
+        "cohort_id": "usgs_m55_1990_present_all",
+        "rule": "source_id==usgs_comcat_fdsnws_event_v1 AND magnitude>=5.5 AND year(calendar_date_start)>=1990"
+      },
+      {
+        "cohort_id": "usgs_m55_1990_present_declustered_primary",
+        "rule": "usgs_m55_1990_present_all AND decluster_keep_primary==True (v1.1 window_link representative)"
+      },
+      {
+        "cohort_id": "usgs_m55_1990_present_reviewed_only",
+        "rule": "usgs_m55_1990_present_all AND lower(trim(review_status))==reviewed"
+      },
+      {
+        "cohort_id": "usgs_m55_1990_present_reviewed_only_declustered_primary",
+        "rule": "usgs_m55_1990_present_reviewed_only AND decluster_keep_primary==True"
+      },
+      {
+        "cohort_id": "usgs_m60_plus",
+        "rule": "usgs_m55_1990_present_all AND magnitude>=6.0"
+      },
+      {
+        "cohort_id": "usgs_m60_plus_declustered_primary",
+        "rule": "usgs_m60_plus AND decluster_keep_primary==True"
+      },
+      {
+        "cohort_id": "usgs_m70_plus",
+        "rule": "usgs_m55_1990_present_all AND magnitude>=7.0"
+      }
+    ]
+  },
+  "columns": [
+    {
+      "name": "cohort_id",
+      "dtype": "object"
+    },
+    {
+      "name": "cohort_name",
+      "dtype": "object"
+    },
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "inclusion_rule_summary",
+      "dtype": "object"
+    },
+    {
+      "name": "created_at_utc",
+      "dtype": "object"
+    }
+  ]
+}

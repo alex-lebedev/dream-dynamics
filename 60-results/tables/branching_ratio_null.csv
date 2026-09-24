@@ -1,0 +1,7 @@
+series,null,n_spikes,observed_br,post_rate,base_rate,null_mean,null_sd,null_q95,n_distinct_null,support,n_null,p
+nightmare,shuffle,86,1.1488,0.2829,0.2463,0.9991,0.115,1.1908,220,1000,1000,0.1099
+nightmare,displace_week,86,1.1488,0.2829,0.2463,1.0013,0.1301,1.2024,42,121,121,0.1148
+nightmare,displace_day,86,1.1488,0.2829,0.2463,1.0021,0.1536,1.2024,71,852,852,0.129
+food (negative control),shuffle,86,0.9654,0.2403,0.2489,0.9994,0.1164,1.2024,217,1000,1000,0.6054
+food (negative control),displace_week,86,0.9654,0.2403,0.2489,0.9964,0.1129,1.159,37,121,121,0.5984
+food (negative control),displace_day,86,0.9654,0.2403,0.2489,1.0018,0.1356,1.1839,67,852,852,0.6377

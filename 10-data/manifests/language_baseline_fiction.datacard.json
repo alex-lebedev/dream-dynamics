@@ -1,0 +1,17 @@
+{
+  "name": "language_baseline_fiction",
+  "role": "control",
+  "source": "Project Gutenberg via the Gutendex API (https://gutendex.com/books?languages=en&topic=fiction); plain-text UTF-8 editions",
+  "license": "public domain (Project Gutenberg); Gutenberg boilerplate stripped",
+  "sensitivity": "S0",
+  "retrieved": "2026-08-20",
+  "local_path": "10-data/external/language_baselines/fiction.csv",
+  "bytes": 8259218,
+  "sha256": "d70d41387f6539848b101d1bdcd075ed5e490151f90eaa096401eebe49e00c00",
+  "rows": 12000,
+  "columns": ["text", "author", "source"],
+  "coverage": "12,000 paragraphs drawn from 73 English fiction titles; median 499 characters (min 300); capped per book so no single title dominates",
+  "notes": "Deliberate narrative prose — the literary comparator for the geometry controls. Together with the personal-narrative and encyclopedic baselines it brackets dream reports on the dimensions that plausibly drive embedding geometry: narrativity, person, and register.",
+  "caveats": "Literary and largely pre-1930 English, so vocabulary and syntax differ from contemporary informal writing; paragraph boundaries are an imperfect proxy for a 'document'. Front/back matter removed by matching the Gutenberg START/END markers. Length-matched truncation is applied in the geometry script for comparability with dream reports.",
+  "used_by": ["analyses/2026-08-20-04-geometry-language-baseline.py"]
+}

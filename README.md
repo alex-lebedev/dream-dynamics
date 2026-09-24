@@ -1,79 +1,68 @@
-# The physics of dreams — analysis code
+# Measuring a dreaming population
 
-Analysis code accompanying the manuscript *The physics of dreams: scaling laws, low-dimensional geometry and
-an emotional arrow of time in a dreaming population.*
+Figures, videos, de-identified aggregates and the code that drew them, for *Measuring a dreaming population: multilevel temporal organization in 75,000 dream reports*.
 
-This repository contains **only the analysis scripts** (and the small importable package they call). It
-contains **no data and no figures**: raw dream text and user identifiers are private and are never shared,
-and even de-identified aggregate outputs are produced locally when the scripts are run.
+- **Start here:** [`index.html`](index.html) — the illustrated account, with the videos
+  ([read it rendered](https://lebedevlabs.com/dream-dynamics/))
+- **The manuscript:** [`manuscript.html`](manuscript.html) (citations resolved) or the source,
+  [`dream-dynamics.md`](70-papers/academic/dream-dynamics.md)
+- **Videos:** [`60-results/videos/`](60-results/videos/)
 
-## What the analyses do
+## What this is
 
-A dense, daily, multilingual stream of ~30,000 dream reports (DreamSeer; 30,241 cleaned reports from 5,524
-users, 2024–2026) — with DreamBank, Reddit r/Dreams and the Sleep & Dream Database — is analyzed as a complex
-system under one multilingual sentence-embedding + sentiment instrument, with every claim tested against
-explicit nulls (feature shuffles, sentence-order shuffles, a Gaussian reference, a stable-user panel, and
-autocorrelation-preserving surrogates). Headline results, honestly tiered:
+A population of people wrote down their dreams in an app, daily, for two years — 30,241 reports
+from 5,524 users. Set beside roughly 45,000 more from three public archives, that is the corpus. This
+repository holds what could be measured in it without ever publishing one of those reports: the
+emotional shape of a dream report over its own length, the geometry of the language it is written
+in, and a set of tests for whether any of it tracks the news.
 
-- **Robust:** classical scaling laws (Zipf ≈1.15, Heaps V∼N^0.57); a low-dimensional manifold (two-NN
-  intrinsic dimension ≈25 vs 112/131 nulls in 384-d); a single dense percolation "continent" (95% connected
-  at cosine 0.5 vs 0% shuffled); a demographic sex axis (Cohen's d ≈ 0.22, verbosity-robust).
-- **Cross-corpus replicated but exploratory:** an emotional arrow of time — dreams end darker across five
-  corpus-language samples (AUC 0.647–0.667), with an LLM-interpretation comparator ending lighter.
-- **Frontier:** a universal descending *mean* arc (cross-corpus |cos| 0.957 vs 0.25 shuffled); critical
-  slowing down before mood-darkenings (Kendall τ = +0.236, p = .005; 12 episodes).
+Some of those tests came back positive and some came back null. The null results are in the paper
+and in the article, in the same detail as the positive ones.
 
-Aggregate dream affect does **not** detectably track external market/news/cultural indicators — reported only
-as a one-paragraph specificity control (the structure is intrinsic).
+## What is here, and what is not
 
-## Contents
+This is a **curated showcase**, not a mirror of the working repository. It ships the importable
+package (`src/psychohistory/`), the 45 analysis scripts cited in the manuscript's reproducibility table (including those that draw every figure and video it ships),
+the aggregate tables those scripts read, the data-cards describing each source, the methods and
+ethics documents, and the manuscript.
 
-```
-analyses/            the 12 committed analysis scripts (one per result component)
-src/psychohistory/   the importable package the scripts call (trimmed to only what they import)
-pyproject.toml       package metadata (so the scripts can import psychohistory)
-```
+It does **not** contain dream reports, and it never will. The primary corpus is personal narrative
+written by identifiable people; raw text and user identifiers do not leave the machine they were
+analysed on. No cell published anywhere in this repository rests on fewer than
+20 reports or 5 contributors — see [`docs/ETHICS.md`](docs/ETHICS.md), and
+[`scripts/check_release_cells.py`](scripts/check_release_cells.py), which is the check that enforces
+it and which refuses to build this release if it fails.
 
-`analyses/` maps one script per result component: physics/scaling & intrinsic dimension, collective dynamics
-(percolation, stable-panel geometry, critical slowing down), within-dream narrative physics, cross-corpus
-arrow/arcs, emotional-arc basis, demographics, the individual-signature replication, the two societal-signal
-specificity-control scripts, and the two figure-rendering scripts. Each script documents its outputs in its
-docstring and writes de-identified aggregate results to a local `60-results/` folder when run.
+Also absent: the other 60 analysis scripts in the working repository (exploratory passes
+and superseded drafts), the corpus-download and feature-build tools, and the working notes.
 
-## Running
+## What you can and cannot rebuild
+
+Being exact about this, because "analysis code" in a repository with no data usually means less than
+it sounds like:
+
+| | |
+|---|---|
+| **Runs as shipped** | `2026-08-22-05-chain-figure.py` — the measurement-chain diagram draws from nothing but itself. |
+| **Runs from shipped tables** | The panels of `fig1`, `fig2_geometry` and `fig4_arrow_robustness` that read the aggregates in `60-results/showcase/*.csv`. Those CSVs are the numbers behind the claims; you can check the figures against them, and check them against the paper. |
+| **Does not run** | Everything else. The corpus figures need the raw reports; the videos need cached sentence-level embeddings and sentiment (tens of GB, derived from raw text). They are shipped to be *read* — so that what was computed is inspectable — not to be executed. |
+
+For the external corpora, go to the sources rather than to us: DreamBank, the Sleep and Dream
+Database, and the published Reddit dream corpora. Each is described with its licence and retrieval
+terms in [`10-data/manifests/`](10-data/manifests/).
+
+## Install
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e .                         # installs the psychohistory package
-PYTHONPATH=src PYTHONNOUSERSITE=1 USE_TF=0 python3 analyses/<script>.py
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[signals,external,dev]"
 ```
 
-The scripts read local corpora from a `10-data/` folder. Because the primary DreamSeer data are **private**,
-the DreamSeer-dependent scripts cannot be run end-to-end from this repository alone; the code is published for
-transparency and methodological review.
+## Licence and citation
 
-## Data & privacy
+Code is MIT ([`LICENSE`](LICENSE)); prose, figures and videos are CC BY 4.0
+([`LICENSE-CONTENT.md`](LICENSE-CONTENT.md)). Cite the manuscript for the findings, and each data
+source on the terms in its own data-card.
 
-No raw dream text or user identifiers are included in, or reconstructable from, this repository. DreamSeer raw
-data are private (app-owner licensed) and are never shared; only de-identified, aggregated derivatives are
-ever produced, with a per-cell minimum of ≥ 20 reports / ≥ 5 users. DreamBank, Reddit r/Dreams and SDDb must
-be obtained from their original providers under their terms. Any external release of results should follow an
-institutional ethics/IRB determination and the relevant terms-of-service/licensing review.
-
-## Citation
-
-If you use this code, please cite the manuscript. `[AUTHOR TO CONFIRM: final author list, venue, year, DOI.]`
-
-```bibtex
-@article{dream-dynamics,
-  title  = {The physics of dreams: scaling laws, low-dimensional geometry and an emotional arrow of time in a dreaming population},
-  author = {Lebedev, Alexander V. and others},
-  year   = {2026},
-  note   = {Manuscript; venue and DOI to be confirmed}
-}
-```
-
-## License
-
-MIT — see [`LICENSE`](LICENSE). Third-party corpora and societal-signal sources retain their own licenses and
-are not redistributed here.
+Built by `scripts/build_public_release.py` from a private research repository; the file list is in
+[`RELEASE-MANIFEST.txt`](RELEASE-MANIFEST.txt).

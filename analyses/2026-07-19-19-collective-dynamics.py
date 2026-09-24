@@ -39,12 +39,23 @@ OUT = C.RESULTS / "showcase"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-# --------------------------------------------------------------- (Q26) CSD ----
-# Critic-hardened: the random-anchor null could not separate genuine critical-slowing-down from
-# ordinary volatility-clustering + endogenous anchor selection. The decisive test is now the
-# observed run-up Kendall-tau vs AR(1)- and phase-randomized SURROGATES run through the IDENTICAL
-# detrend->EWS->endogenous-anchor->run-up-tau pipeline. Residual is deseasonalized + volume/SE-
-# standardized so low-volume days don't inflate the rolling variance; anchors are episode-deduped.
+# ------------------------------------------------- (Q26) variance precursor ----
+# The random-anchor null could not separate a genuine run-up from endogenous anchor selection, so the
+# test here is the observed run-up Kendall-tau vs AR(1)- and phase-randomized SURROGATES run through
+# the IDENTICAL detrend->EWS->endogenous-anchor->run-up-tau pipeline. Residual is deseasonalized +
+# volume/SE-standardized so low-volume days don't inflate the rolling variance; anchors are
+# episode-deduped.
+#
+# CORRECTION (2026-08-21): this block's own output text used to claim these surrogates "reproduce
+# ordinary volatility-clustering". They do not. AR(1) is linear-Gaussian with constant conditional
+# variance and phase randomization preserves only the power spectrum; volatility clustering is a
+# conditional-variance property. Measured, these surrogates reproduce ~1/4 of the observed
+# abs/squared lag-1 autocorrelation. Since rolling variance is exactly what conditional
+# heteroskedasticity inflates, that was the load-bearing objection, and it is now tested properly in
+# analyses/2026-08-21-04-precursor-hardening.py against GARCH(1,1), stationary-bootstrap and IAAFT
+# nulls (estimators re-exported from this file via src/psychohistory/stats/ews.py, so the statistic
+# below reproduces exactly). Result: the run-up FAILS BH under the stationary bootstrap at L=28.
+# Anything downstream should treat the block bootstrap, not this pair, as the primary null.
 def _daily_resid(meta, col, lang="en", min_n=20):
     sub = meta[meta.lang == lang]
     g = sub.groupby(sub.date.dt.normalize())[col]
@@ -233,7 +244,7 @@ def main():
          "flagged exploratory.*", ""]
 
     # Q26
-    L += ["## (Q26) Critical slowing down — does variance rise faster than a volatility-clustering surrogate?"]
+    L += ["## (Q26) Variance precursor — does variance rise faster than a linear-dependence surrogate?"]
     try:
         csd_fig = None
         for col in ["nightmare_index", "negativity"]:
@@ -244,11 +255,16 @@ def main():
                      f"**p={res['variance']['surr_p']:.3f}**); AR(1) run-up τ={res['ar1']['obs_tau']:+.3f} "
                      f"(surrogate p={res['ar1']['surr_p']:.3f}).")
             csd_fig = (x, win)
-        L += ["  Decisive test = observed run-up τ vs **AR(1)/phase-randomized surrogates** that "
-              "reproduce ordinary volatility-clustering (the prior random-anchor null could not "
-              "separate the two). Genuine critical-slowing-down survives only at surrogate p<.05; "
-              "otherwise the variance rise is *consistent with volatility clustering, not a tipping "
-              "point*. Reliability-limited (daily nightmare split-half ~.17).", ""]
+        L += ["  Test = observed run-up τ vs **AR(1)/phase-randomized surrogates** through the identical "
+              "pipeline, so the null absorbs the anchor-selection rule (the prior random-anchor null "
+              "could not). **These surrogates preserve LINEAR serial dependence only — NOT volatility "
+              "clustering**, contrary to what this line used to say; they reproduce ~1/4 of the observed "
+              "abs/squared lag-1 autocorrelation. Rolling variance is exactly what conditional "
+              "heteroskedasticity inflates, so the volatility-preserving nulls in "
+              "`analyses/2026-08-21-04-precursor-hardening.py` are the ones that matter: the run-up "
+              "**FAILS BH under a stationary block bootstrap at L=28** (q=.160). The autocorrelation "
+              "indicator fails everywhere, so this is a *variance precursor*, not critical slowing "
+              "down. Also reliability-limited (daily nightmare split-half ~.17) and only 12 episodes.", ""]
     except Exception as e:  # keep the batch alive
         L += [f"  (CSD failed: {e})", ""]
         csd_fig = None

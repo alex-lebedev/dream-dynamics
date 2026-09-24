@@ -1,0 +1,21 @@
+{
+  "output_parquet": "data/processed/historical_events_political_shocks_control_pool.parquet",
+  "rows": 1077480,
+  "notes": {
+    "parity": "Identical pool construction as historical_events_control_pool."
+  },
+  "columns": [
+    {
+      "name": "calendar_date",
+      "dtype": "object"
+    },
+    {
+      "name": "month",
+      "dtype": "int16"
+    },
+    {
+      "name": "weekday",
+      "dtype": "int16"
+    }
+  ]
+}

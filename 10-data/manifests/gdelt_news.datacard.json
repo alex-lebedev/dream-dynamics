@@ -1,0 +1,33 @@
+{
+  "name": "gdelt_news",
+  "source": "https://api.gdeltproject.org/api/v2/doc/doc (GDELT 2.0 DOC API)",
+  "license": "GDELT open (CC-BY-like; attribution)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "Daily average news TONE + coverage VOLUME for crisis themes. No key. NOTE: only EN (sourcelang:english) served via the DOC timeline API; sourcelang:russian did not return data across two gentle passes -> RU/cross-cultural DEFERRED (see 'langs' field for what actually landed).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/gdelt_news.csv",
+  "bytes": 149001,
+  "size": "145.5KB",
+  "sha256": "46348c87e6981683786b65439e3a7ae751c0fb2458c84b55c32f042d6c671651",
+  "rows": 4530,
+  "langs": [
+    "en"
+  ],
+  "queries": [
+    "layoffs",
+    "recession",
+    "war"
+  ],
+  "metrics": [
+    "tone",
+    "vol"
+  ],
+  "columns": [
+    "date",
+    "lang",
+    "query",
+    "metric",
+    "value"
+  ],
+  "caveats": "GDELT 'Average Tone' is article-level mean tone (higher=more positive); 'vol' is % of total monitored coverage. RU basket is hand-translated. GDELT corpus grows over time (volume has a secular trend). API is rate-limited/flaky \u2014 fetched with retry+pacing."
+}

@@ -24,6 +24,7 @@ Outputs -> 60-results/showcase/pub/ :
 """
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 
 import matplotlib
@@ -42,7 +43,11 @@ PUB = SHOW / "pub"
 PUB.mkdir(parents=True, exist_ok=True)
 ANALYSES = C.ROOT / "analyses"
 
-WIN, RUNUP, N_SURR, SEED = 28, 42, 400, 0   # identical to csd_test defaults in 2026-07-19-19
+WIN, RUNUP, SEED = 28, 42, 0
+# 500 draws per generator = the 1,000-surrogate published-null budget reported in Section 3.5 and
+# Supplementary Table S3. It was 400 (800 draws) while the manuscript quoted 1,000, so the plotted
+# histogram and its on-image p did not match the caption above it.
+N_SURR = 500
 
 
 def _load_module(filename, name):
@@ -73,8 +78,11 @@ def _csd_arrays(meta, col="nightmare_index"):
     anc = CD._dedupe(np.where(fin & (fwd >= np.nanquantile(fwd, 0.90)))[0], RUNUP)
     obs, n_anc = CD._pipeline_taus(x, WIN, RUNUP)
     obs_tau = float(obs["variance"])
-    # AR(1)+phase surrogates through the identical pipeline (same seed & order as csd_test)
-    rng = np.random.default_rng(SEED)
+    # AR(1)+phase surrogates through the identical pipeline. The seed is the same stable-hash stream
+    # the hardening script uses for this cell, and the generators run in the same order at the same
+    # budget, so the p drawn on this figure is the p reported in Table S3 rather than a near miss.
+    key = f"{SEED}|ar1_plus_phase (published)|{col}".encode()
+    rng = np.random.default_rng(int.from_bytes(hashlib.blake2b(key, digest_size=8).digest(), "big"))
     surr = []
     for gen in (CD._ar1_surrogate, CD._phase_surrogate):
         for _ in range(N_SURR):
@@ -124,7 +132,10 @@ def fig5_csd(meta):
     ax[1].legend(loc="upper left", fontsize=8)
     panel_label(ax[1], "b")
 
-    fig.suptitle("Nightmare variance rises before collective mood-darkenings, beyond volatility-clustering surrogates",
+    # Do not restate a claim here that the text has narrowed. The previous title asserted the
+    # run-up held "beyond volatility-clustering surrogates" — the exact claim Section 2.5 retracts,
+    # since AR(1)+phase surrogates do not preserve volatility clustering.
+    fig.suptitle("Nightmare variance rises before the series' own mood-darkenings; significance is null-dependent",
                  fontsize=12, fontweight="bold", y=1.03)
     try:
         fig.autofmt_xdate(rotation=30)

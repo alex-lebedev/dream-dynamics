@@ -523,8 +523,10 @@ def _figure(df, dfv, mean_arcs, mean_arcs_sh, dream_names):
             fontsize=7.5, color=PALETTE["grey"], ha="right", va="top")
     panel_label(ax, "d", x=-0.16)
 
+    # "dream-specific" was the original wording; the matched non-dream comparators added in
+    # revision show a weak descent in every corpus, so only the depth is distinctive.
     fig.suptitle("The emotional arrow of time replicates across independent dream corpora "
-                 "(and is dream-specific)", fontsize=13, fontweight="bold", y=1.03)
+                 "(and survives sentence-order shuffling)", fontsize=13, fontweight="bold", y=1.03)
     fig.tight_layout()
     save_fig(fig, OUT / "45_arrow_arcs_external")
 

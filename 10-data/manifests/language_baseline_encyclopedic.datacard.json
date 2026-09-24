@@ -1,0 +1,17 @@
+{
+  "name": "language_baseline_encyclopedic",
+  "role": "control",
+  "source": "https://huggingface.co/datasets/wikimedia/wikipedia, config `20231101.en` (converted parquet shard, refs/convert/parquet)",
+  "license": "CC-BY-SA-4.0 / GFDL (Wikipedia)",
+  "sensitivity": "S0",
+  "retrieved": "2026-08-20",
+  "local_path": "10-data/external/language_baselines/encyclopedic.csv",
+  "bytes": 7895820,
+  "sha256": "4dc0c5fa6d6afd19790a87107c6a2c56c1f1637c7e7adb21eb2cec86d5614ed8",
+  "rows": 12000,
+  "columns": ["text", "author", "source"],
+  "coverage": "Lead sections of 12,000 distinct English Wikipedia articles, randomly sampled from one shard of the 2023-11-01 snapshot; median 531 characters (min 300)",
+  "notes": "Coherent but non-narrative third-person prose. This is the register anchor for the geometry controls: if the intrinsic-dimension and percolation estimators cannot separate encyclopedic text from first-person narrative, they are measuring the encoder rather than the corpus.",
+  "caveats": "A frozen snapshot was used in preference to the live `generator=random` API, which rate-limits (HTTP 429) within a few hundred articles and is not reproducible. Lead-section extraction is heuristic (first paragraphs up to 400 characters or three paragraphs, section headers skipped). Wikipedia text is plausibly inside the training data of the sentence encoder, which if anything biases this baseline toward LOWER intrinsic dimension — the conservative direction for the dream comparison.",
+  "used_by": ["analyses/2026-08-20-04-geometry-language-baseline.py"]
+}

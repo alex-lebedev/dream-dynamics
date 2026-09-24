@@ -1,0 +1,144 @@
+{
+  "output_parquet": "data/processed/historical_events_aviation_core.parquet",
+  "source_mdb": "data/raw/historical_events/ntsb_avall/v1/avall.mdb",
+  "ingest_manifest": "data/raw/historical_events/ntsb_avall/v1/ingest_manifest.json",
+  "rows": 26246,
+  "notes": {
+    "event_family_v1": "disaster_transport",
+    "event_subtype_v1": "aviation_accident",
+    "source_id": "ntsb_avall_mdb_v1",
+    "analysis_calendar_date": "UTC calendar date from NTSB ev_date; sub-day UTC when ev_tmzn==UTC and ev_time parses as HHMM.",
+    "severity_policy": "severity_magnitude duplicates fatalities_total at index; severity_bucket uses fatality bands + hull_destroyed_non_fatal.",
+    "aviation_fields": "fatalities_total (inj_tot_f), aircraft_hull_loss (any aircraft.damage==DEST), operator_region (first oper_country), operation_phase (first phase_flt_spec).",
+    "deduplication_v1": "dedupe_cluster_id equals event_id; one row per NTSB ev_id.",
+    "quality_flags": "outside_spine; ntsb_time_imputed_or_partial when time not high-confidence; ntsb_missing_iso3_country.",
+    "ingest_policy": "ev_type ACC only; raw ev_year>=1990; require finite dec_latitude/dec_longitude. Current avall.mdb populates decimals from ~2008 onward, so the spatial core is ~2008\u2013present.",
+    "geographic_scope": "NTSB census is US civil aviation\u2013centric; ev_country is often USA but not enforced."
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "event_family",
+      "dtype": "object"
+    },
+    {
+      "name": "event_subtype",
+      "dtype": "object"
+    },
+    {
+      "name": "time_semantics",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_start",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_end",
+      "dtype": "object"
+    },
+    {
+      "name": "date_precision",
+      "dtype": "object"
+    },
+    {
+      "name": "original_date_text",
+      "dtype": "object"
+    },
+    {
+      "name": "original_calendar_system",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_method_id",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_confidence",
+      "dtype": "object"
+    },
+    {
+      "name": "place_name",
+      "dtype": "object"
+    },
+    {
+      "name": "country_iso3166_1_alpha3",
+      "dtype": "object"
+    },
+    {
+      "name": "latitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "longitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude_type",
+      "dtype": "object"
+    },
+    {
+      "name": "depth_km",
+      "dtype": "float64"
+    },
+    {
+      "name": "origin_time_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "review_status",
+      "dtype": "object"
+    },
+    {
+      "name": "source_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_record_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_url",
+      "dtype": "object"
+    },
+    {
+      "name": "ingested_at_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "dedupe_cluster_id",
+      "dtype": "object"
+    },
+    {
+      "name": "is_canonical_row",
+      "dtype": "bool"
+    },
+    {
+      "name": "quality_flags",
+      "dtype": "object"
+    },
+    {
+      "name": "fatalities_total",
+      "dtype": "int64"
+    },
+    {
+      "name": "aircraft_hull_loss",
+      "dtype": "bool"
+    },
+    {
+      "name": "operator_region",
+      "dtype": "object"
+    },
+    {
+      "name": "operation_phase",
+      "dtype": "object"
+    }
+  ]
+}

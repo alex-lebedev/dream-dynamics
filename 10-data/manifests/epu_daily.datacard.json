@@ -1,0 +1,16 @@
+{
+  "name": "epu_daily",
+  "source": "https://www.policyuncertainty.com/ (US Daily Economic Policy Uncertainty index, Baker-Bloom-Davis)",
+  "license": "public (policyuncertainty.com; cite Baker, Bloom & Davis 2016)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "US Daily Economic Policy Uncertainty index; column daily_policy_index (day/month/year). One of the market/macro-financial block inputs for the leave-dreams-out mood factor (F0037/F0038).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/epu_daily.csv",
+  "bytes": 248860,
+  "size": "243.0KB",
+  "sha256": "34456ecaf7ffc161fda4e11d9a8c8348ca52552213b079135bc1811bfaffe3e5",
+  "rows": 15172,
+  "columns": ["day", "month", "year", "daily_policy_index"],
+  "date_min": "1985-01-01",
+  "date_max": "2026-07-16"
+}

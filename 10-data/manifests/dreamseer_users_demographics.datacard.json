@@ -1,0 +1,22 @@
+{
+  "name": "dreamseer_users_demographics",
+  "source": "DreamSeer app export (Alex) \u2014 00-inbox/dreamseer_users_data.csv",
+  "license": "private (app owner)",
+  "sensitivity": "S3-PII",
+  "retrieved": "2026-07-21",
+  "notes": "Per-user profile. ONLY gender + birthdate are used (\u2192 sex, age); name/email/userID are PII and NOT used in outputs. GITIGNORED; only de-identified period-level aggregates are emitted.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/00-inbox/dreamseer_users_data.csv",
+  "bytes": 1375750,
+  "size": "1.3MB",
+  "sha256": "0df69200a96dd2fa66978a49084d83c9dd17838b9b9a0e31f2baef30029602e9",
+  "rows_users": 7502,
+  "sex_coverage_dreams": 0.91,
+  "age_coverage_dreams": 0.86,
+  "female_share": 0.7,
+  "columns_used": [
+    "userID(join-only)",
+    "gender",
+    "birthdate"
+  ],
+  "caveats": "self-reported; strong female skew (70%); age = 2026 \u2212 birthyear (coarse); ~10-14% of dreams lack demo (dropped from adjusted signal)."
+}

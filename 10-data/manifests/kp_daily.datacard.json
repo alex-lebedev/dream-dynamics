@@ -1,0 +1,15 @@
+{
+  "name": "kp_daily",
+  "source": "https://kp.gfz-potsdam.de/app/files/Kp_ap_Ap_SN_F107_since_1932.txt",
+  "license": "CC BY 4.0 (GFZ Potsdam; Matzka et al. 2021)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "Daily geomagnetic Kp (max/mean of 8 3-hourly), Ap, storm flags.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/kp_daily.csv",
+  "bytes": 1217115,
+  "size": "1.2MB",
+  "sha256": "3e59859a2362f126e07fb8c20c3abbdf0dfdacbd6cf11c8f79aaca3dee89681b",
+  "rows": 34532,
+  "date_min": "1932-01-01",
+  "date_max": "2026-07-17"
+}

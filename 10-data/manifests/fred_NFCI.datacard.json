@@ -1,0 +1,20 @@
+{
+  "name": "fred_NFCI",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NFCI",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series NFCI | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_NFCI.csv",
+  "bytes": 50944,
+  "size": "49.8KB",
+  "sha256": "06d335f158d3037176836633a6ed2ffb935e0289e4de5e84daa15873b7c7deaa",
+  "rows": 2897,
+  "date_min": "1971-01-08",
+  "date_max": "2026-07-10",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "Chicago Fed National Financial Conditions Index; WEEKLY; model-based and revised; higher=tighter."
+}

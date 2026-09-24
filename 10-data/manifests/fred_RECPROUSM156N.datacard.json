@@ -1,0 +1,20 @@
+{
+  "name": "fred_RECPROUSM156N",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=RECPROUSM156N",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series RECPROUSM156N | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_RECPROUSM156N.csv",
+  "bytes": 11305,
+  "size": "11.0KB",
+  "sha256": "097207f711a8f00efab6b5fc94a07985f4b98ca30872494713e944acd0a9e11b",
+  "rows": 708,
+  "date_min": "1967-06-01",
+  "date_max": "2026-05-01",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "Smoothed US recession probability; MONTHLY; percent; SMOOTHED + publication lag (backward-looking) -> use with care in contemporaneous factors."
+}

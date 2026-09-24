@@ -1,0 +1,41 @@
+{
+  "output_parquet": "data/processed/historical_events_political_shocks_cohort.parquet",
+  "source_core": "data/processed/historical_events_political_shocks_core.parquet",
+  "rows": 324,
+  "notes": {
+    "purpose": "Frozen political-shock cohorts (long). Join on event_id.",
+    "cohort_build_version": "3",
+    "cohorts_defined": [
+      {
+        "cohort_id": "powell_thyne_successful_coup_onset_1950_present",
+        "rule": "coup==1 AND year>=1950 AND not outside_spine"
+      },
+      {
+        "cohort_id": "powell_thyne_successful_coup_onset_1990_present",
+        "rule": "coup==1 AND year>=1990 AND not outside_spine (nested subset of 1950_present)"
+      }
+    ]
+  },
+  "columns": [
+    {
+      "name": "cohort_id",
+      "dtype": "object"
+    },
+    {
+      "name": "cohort_name",
+      "dtype": "object"
+    },
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "inclusion_rule_summary",
+      "dtype": "object"
+    },
+    {
+      "name": "created_at_utc",
+      "dtype": "object"
+    }
+  ]
+}

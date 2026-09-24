@@ -1,0 +1,8 @@
+metric,value
+n_users,28.0
+gap_native,0.11238362113365288
+calibration,0.103
+content_residual,0.009383621133652889
+resid_ci_lo,-0.045228765864687236
+resid_ci_hi,0.05948354646130288
+pct_scorer,91.6503659172066

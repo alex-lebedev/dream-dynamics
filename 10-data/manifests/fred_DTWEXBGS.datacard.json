@@ -1,0 +1,15 @@
+{
+  "name": "fred_DTWEXBGS",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "FRED series DTWEXBGS",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_DTWEXBGS.csv",
+  "bytes": 100213,
+  "size": "97.9KB",
+  "sha256": "26dc9516aa109f46727da0edd2c2fa4ff178565008dd32277732b15150c397a1",
+  "rows": 5144,
+  "date_min": "2006-01-02",
+  "date_max": "2026-07-10"
+}

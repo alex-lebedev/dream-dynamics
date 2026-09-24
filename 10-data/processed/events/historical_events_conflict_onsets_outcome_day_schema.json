@@ -1,0 +1,30 @@
+{
+  "output_parquet": "data/processed/historical_events_conflict_onsets_outcome_day.parquet",
+  "source_core": "data/processed/historical_events_conflict_onsets_core.parquet",
+  "rows": 4142,
+  "notes": {
+    "offsets_inclusive": [
+      -7,
+      30
+    ],
+    "parity": "Same outcome window as earthquakes/aviation/political (-7..+30)."
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date",
+      "dtype": "object"
+    },
+    {
+      "name": "offset_days",
+      "dtype": "int64"
+    },
+    {
+      "name": "role",
+      "dtype": "object"
+    }
+  ]
+}

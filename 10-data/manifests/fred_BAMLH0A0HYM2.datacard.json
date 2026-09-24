@@ -1,0 +1,15 @@
+{
+  "name": "fred_BAMLH0A0HYM2",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "FRED series BAMLH0A0HYM2",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_BAMLH0A0HYM2.csv",
+  "bytes": 12527,
+  "size": "12.2KB",
+  "sha256": "7ac2b2344a0c121c68bc16ea2b078b2fd4eab69035147b9bc589b44ea5f82f98",
+  "rows": 787,
+  "date_min": "2023-07-18",
+  "date_max": "2026-07-16"
+}

@@ -1,0 +1,47 @@
+{
+  "output_parquet": "data/processed/historical_events_aviation_cohort.parquet",
+  "source_core": "data/processed/historical_events_aviation_core.parquet",
+  "rows": 5856,
+  "notes": {
+    "purpose": "Frozen aviation cohorts (long). Join on event_id. v2 adds hull-nonfatal and fatal-no-hull splits.",
+    "cohort_build_version": "2",
+    "join_key": "event_id",
+    "grain": "one row per (cohort_id, event_id)",
+    "cohorts_defined": [
+      {
+        "cohort_id": "ntsb_fatal_hull_destroyed_accident_2008_present",
+        "rule": "year>=2008 AND fatalities_total>=1 AND aircraft_hull_loss==True (DEST)"
+      },
+      {
+        "cohort_id": "ntsb_hull_destroyed_nonfatal_2008_present",
+        "rule": "year>=2008 AND fatalities_total==0 AND aircraft_hull_loss==True (DEST)"
+      },
+      {
+        "cohort_id": "ntsb_fatal_no_hull_destroy_2008_present",
+        "rule": "year>=2008 AND fatalities_total>=1 AND aircraft_hull_loss==False (no DEST)"
+      }
+    ]
+  },
+  "columns": [
+    {
+      "name": "cohort_id",
+      "dtype": "object"
+    },
+    {
+      "name": "cohort_name",
+      "dtype": "object"
+    },
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "inclusion_rule_summary",
+      "dtype": "object"
+    },
+    {
+      "name": "created_at_utc",
+      "dtype": "object"
+    }
+  ]
+}

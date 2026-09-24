@@ -1,0 +1,20 @@
+{
+  "name": "frbsf_news_sentiment",
+  "source": "https://www.frbsf.org/economic-research/indicators-data/daily-news-sentiment-index/",
+  "license": "public (FRBSF)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "SF-Fed Daily News Sentiment Index (Shapiro-Sudhof-Wilson). No key.",
+  "caveats": "US-news-centric (EN-language) — not a good referent for the RU cohort. Revised in place by FRBSF on each publish, so a re-pull will change the sha256. Full history from 1980 but only the 2024-02+ window is used in analysis.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/frbsf_news_sentiment.csv",
+  "bytes": 532608,
+  "size": "520.1KB",
+  "sha256": "43a1a09b4d16071b8b63fe93e00079f8ec553fbffb91480843a5d08d75e1adc3",
+  "rows": 16976,
+  "columns": [
+    "date",
+    "value"
+  ],
+  "date_min": "1980-01-01",
+  "date_max": "2026-07-12"
+}

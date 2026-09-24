@@ -1,0 +1,20 @@
+{
+  "name": "fred_MICH",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MICH",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series MICH | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_MICH.csv",
+  "bytes": 8731,
+  "size": "8.5KB",
+  "sha256": "a715e7cd82605e957a8bd15e24f57dddf064eb96d351ad74f44d81ccac062925",
+  "rows": 581,
+  "date_min": "1978-01-01",
+  "date_max": "2026-05-01",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "U.Michigan 1-yr median inflation expectation; MONTHLY; percent."
+}

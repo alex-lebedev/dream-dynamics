@@ -1,0 +1,767 @@
+{
+  "built_at_utc": "2026-05-04T19:20:28Z",
+  "git_commit": null,
+  "swisseph_version": "2.10.03",
+  "swiss_ephemeris_supplement_schema": {
+    "extend_before_years": 400,
+    "extend_after_years": 400,
+    "supplement_year_ranges": [
+      [
+        -400,
+        -1
+      ],
+      [
+        2151,
+        2550
+      ]
+    ]
+  },
+  "delta_t_model_id": "swisseph_builtin_deltat",
+  "outputs": {
+    "celestial_daily_primary": "data/processed/celestial_daily_primary.parquet",
+    "reference_delta_t_daily": "data/processed/reference_delta_t_daily.parquet"
+  },
+  "inputs": [
+    {
+      "label": "ephemeris_daily",
+      "path": "data/processed/ephemeris_daily.parquet",
+      "bytes": 32494164,
+      "sha256": "457be67eb583fcd496a2a407b189899183d818098d84b30581c7d299dadda3bd"
+    },
+    {
+      "label": "swiss_ephemeris_supplement",
+      "path": "data/processed/swiss_ephemeris_supplement.parquet",
+      "bytes": 31885263,
+      "sha256": "5c8748a4d0be65745079bc92277c548e4a6eb70adf3b0b8a7d067f625046d6e5"
+    },
+    {
+      "label": "celestial_aux_manifest",
+      "path": "data/raw/celestial_aux_manifest.json",
+      "bytes": 7824,
+      "sha256": "d60e05141be441d7b36bfe85517e3bd55e7d06b67e3c701751c6753cc64cc171"
+    }
+  ],
+  "qa": {
+    "duplicate_calendar_date_count": 0,
+    "jd_ut_nondecreasing": true,
+    "jd_ut_strictly_increasing": false,
+    "jd_ut_nonpositive_step_count": 12,
+    "nullable_column_null_fraction": {
+      "true_node_longitude_deg": 0.0,
+      "true_node_retrograde": 0.0,
+      "chiron_longitude_deg": 0.1355913798864016,
+      "chiron_retrograde": 0.1355913798864016
+    },
+    "row_count": 1077480,
+    "boundary_audit_sun_longitude": {
+      "around_year_0": {
+        "-0001-12-28": 277.09656024737046,
+        "-0001-12-31": 280.14576130343505,
+        "0000-01-01": 8.621111111111112,
+        "0000-01-05": 12.68361111111111,
+        "last_swiss_calendar_date_before_first_legacy": "-0001-12-31",
+        "sun_longitude_deg_on_that_swiss_day": 280.14576130343505,
+        "abs_sun_deg_jump_first_legacy_vs_prior_swiss_day": 271.5246501923239
+      },
+      "around_year_2150": {
+        "2149-12-28": 6.385555555555556,
+        "2150-12-28": null,
+        "2150-12-31": null,
+        "2151-01-01": 280.7206914334087,
+        "2151-01-05": 284.79598262429465,
+        "last_legacy_calendar_date_in_run": "2150-01-02",
+        "sun_longitude_deg_on_last_legacy_day": 11.482222222222223,
+        "first_swiss_calendar_date_after_last_legacy": "2151-01-01",
+        "abs_sun_deg_jump_first_swiss_after_legacy_vs_last_legacy": 269.2384692111865
+      },
+      "note": "Large jumps indicate product change (legacy RDA vs Swiss), not physical motion. Use source_ephemeris when modeling discontinuities."
+    }
+  },
+  "p1_derived_events": {
+    "built_at_utc": "2026-05-04T19:20:38Z",
+    "generator": "scripts/build_derived_celestial_p1.py",
+    "inputs": [
+      {
+        "label": "celestial_daily_primary",
+        "path": "data/processed/celestial_daily_primary.parquet",
+        "bytes": 69913374,
+        "sha256": "de64d0132e26e72164abc4d5e70ddfb1ccccb272b5fd122a86d18b8790fa8555"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "data/processed/derived_daily_sky_features.parquet",
+        "bytes": 42230067,
+        "sha256": "d3d686909608f75d25894b18d2e7c725798d0aafb7b61e5f19d931aa936ef0fe"
+      },
+      {
+        "path": "data/processed/derived_daily_sky_features.parquet",
+        "bytes": 265474,
+        "sha256": "2a381bb47abfb17891042a6ef0430338f8e3f763e3dce64a90f50ec6597073f9"
+      },
+      {
+        "path": "data/processed/derived_daily_sky_features.parquet",
+        "bytes": 1964090,
+        "sha256": "990b8850d8eeeb7ad8a8cf89fabb12c3d39d5a08bdd712af00eed130978477fe"
+      },
+      {
+        "path": "data/processed/derived_daily_sky_features.parquet",
+        "bytes": 684972,
+        "sha256": "e4383462c86a7259e263fbdcf9e424929cd1342bdd4ec12f817cee55cc7f10f5"
+      }
+    ],
+    "lunation_coverage": {
+      "event_table": "data/processed/events_lunation_new_full.parquet",
+      "source_ephemeris_rows_used": [
+        "swiss_ephemeris"
+      ],
+      "source_ephemeris_rows_excluded": [
+        "legacy_rda"
+      ],
+      "legacy_rda_lunation_rows_emitted": 0,
+      "requires_contiguous_primary_rows": true,
+      "contiguity_rule": "Lunation logic runs only where consecutive primary rows satisfy jd_ut[i] > jd_ut[i-1] AND source_ephemeris[i] == source_ephemeris[i-1] == 'swiss_ephemeris'; no cross-source or duplicate-JD day-to-day comparisons.",
+      "timing_model": "daily_noon_proxy",
+      "timing_note": "Each row is the primary spine noon UT sample; event calendar_date labels that day. Not exact geocentric conjunction/opposition instant (e.g. not USNO)."
+    },
+    "qa": {
+      "checks": {
+        "derived_row_count_matches_primary": true,
+        "derived_duplicate_calendar_date": 0,
+        "lunation_row_count": 19790,
+        "ingress_row_count": 167413,
+        "station_row_count": 199365,
+        "negative_major_aspect_rows": 0,
+        "moon_phase_bucket_invalid": 0,
+        "lunation_row_count_sane": true,
+        "lunation_duplicate_calendar_date_count": 0,
+        "lunation_rows_not_swiss_primary_count": 0,
+        "primary_pair_ok_step_count": 1077465,
+        "primary_pair_ok_false_step_count": 15
+      },
+      "qa_semantics": {
+        "lunation_duplicate_calendar_date_count": "Must be 0; at most one lunation row per calendar_date.",
+        "lunation_rows_not_swiss_primary_count": "Must be 0; lunation events only on swiss_ephemeris primary rows.",
+        "primary_pair_ok_step_count": "Count of rows i where jd_ut[i] > jd_ut[i-1] and same source_ephemeris (valid day-to-day compare).",
+        "primary_pair_ok_false_step_count": "Count of rows where day-to-day compare is suppressed (first row, seam, or non-increasing jd_ut)."
+      }
+    }
+  },
+  "historical_events_build": {
+    "built_at_utc": "2026-05-05T09:23:38Z",
+    "generator": "scripts/build_historical_events.py",
+    "batch_format": "usgs_fdsnws_csv",
+    "source_id": "usgs_comcat_fdsnws_event_v1",
+    "inputs": [
+      {
+        "label": "historical_events_raw_batch",
+        "path": "data/raw/historical_events/usgs_comcat/v1_m55_1990_20260504/events_fdsnws.csv",
+        "bytes": 3041411,
+        "sha256": "382f281c41bbe1b212fa2e91367135d6f6110f49392053c6e6fe101471d48a02"
+      },
+      {
+        "label": "historical_events_ingest_manifest",
+        "path": "data/raw/historical_events/usgs_comcat/v1_m55_1990_20260504/ingest_manifest.json",
+        "bytes": 13863,
+        "sha256": "3c091adcf897f0faeade37525b6c1f901a0457759f0121f43e7febdd2f191d36"
+      },
+      {
+        "label": "celestial_daily_primary",
+        "path": "data/processed/celestial_daily_primary.parquet",
+        "bytes": 69913374,
+        "sha256": "de64d0132e26e72164abc4d5e70ddfb1ccccb272b5fd122a86d18b8790fa8555"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "data/processed/historical_events_core.parquet",
+        "bytes": 1708291,
+        "sha256": "ca54d46a85078e74600f6036d0ca62f7e1b84d9e34f806df02ae642b4ebf196e"
+      },
+      {
+        "path": "data/processed/historical_events_outcome_day.parquet",
+        "bytes": 541151,
+        "sha256": "6483fb7b38fd1ad86ddcdaa2929bfef85418d3de89f7a941469150a60d8a49a1"
+      },
+      {
+        "path": "data/processed/historical_events_enriched_daily.parquet",
+        "bytes": 1337768,
+        "sha256": "9fc4b892cc893c473e56b9976e28ed1d7701bb1374b73c3b91436e7b42f6dbc3"
+      },
+      {
+        "path": "data/processed/historical_events_control_pool.parquet",
+        "bytes": 870576,
+        "sha256": "54ef0b1e7aa0161a1ec47795fd7e16c536424e8eeaca8700c9c580e64e9cfc59"
+      },
+      {
+        "path": "data/processed/historical_events_control_matches.parquet",
+        "bytes": 675415,
+        "sha256": "f90d11aa4b0a2daa3776ae3c62af86dcbdaa70efd85c113419435f594a57e7e5"
+      }
+    ],
+    "qa": {
+      "checks": {
+        "core_duplicate_event_id": 0,
+        "duplicate_source_record_id_in_core": 0,
+        "canonical_duplicate_per_dedupe_cluster": 0,
+        "core_row_count": 17844,
+        "outcome_row_count": 678072,
+        "enriched_row_count": 678072,
+        "core_events_outside_spine_calendar_range": 0,
+        "enriched_null_primary_join_rows": 0,
+        "core_events_by_index_decade": {
+          "1990s": 4848,
+          "2000s": 5160,
+          "2010s": 4897,
+          "2020s": 2939
+        },
+        "core_events_by_magnitude_band": {
+          "[5.5,6)": 12397,
+          "[6,7)": 4901,
+          "[7,8)": 512,
+          "[8,10]": 34
+        }
+      },
+      "qa_semantics": {
+        "core_duplicate_event_id": "Must be 0.",
+        "duplicate_source_record_id_in_core": "Must be 0 (unique source_record_id per build).",
+        "canonical_duplicate_per_dedupe_cluster": "Must be 0.",
+        "core_events_outside_spine_calendar_range": "Core rows flagged outside_spine (calendar_date_start not on spine).",
+        "enriched_null_primary_join_rows": "Enriched rows missing primary join (off-spine outcome_day dates)."
+      },
+      "ingest_policy": {
+        "rows_input": 17844,
+        "policy_enforced_usgs_cohort": true,
+        "dropped_missing_source_record_id": 0,
+        "dropped_duplicate_source_record_id": 0,
+        "dropped_non_earthquake_type": 0,
+        "dropped_missing_time_or_date": 0,
+        "dropped_unparseable_magnitude": 0,
+        "dropped_below_magnitude_threshold": 0,
+        "dropped_before_policy_start_year": 0,
+        "rows_after_filters": 17844
+      }
+    }
+  },
+  "historical_events_aviation_build": {
+    "built_at_utc": "2026-05-05T14:32:50Z",
+    "generator": "scripts/build_historical_events_aviation.py",
+    "source_id": "ntsb_avall_mdb_v1",
+    "inputs": [
+      {
+        "label": "ntsb_avall_mdb",
+        "path": "data/raw/historical_events/ntsb_avall/v1/avall.mdb",
+        "bytes": 548765696,
+        "sha256": "f6a0d20f763302126fac9b2670df95585a17aaa59ee24d73725c041ded79849b"
+      },
+      {
+        "label": "historical_events_aviation_ingest_manifest",
+        "path": "data/raw/historical_events/ntsb_avall/v1/ingest_manifest.json",
+        "bytes": 552,
+        "sha256": "ab9cf7f6dedc416f9b7bc131fd117cd88d9042a2e175375f1acee5a6907179f6"
+      },
+      {
+        "label": "celestial_daily_primary",
+        "path": "data/processed/celestial_daily_primary.parquet",
+        "bytes": 69913374,
+        "sha256": "de64d0132e26e72164abc4d5e70ddfb1ccccb272b5fd122a86d18b8790fa8555"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "data/processed/historical_events_aviation_core.parquet",
+        "bytes": 2250696,
+        "sha256": "61a09a89c65e8a51a2a08abfafd6823b5547aa642b228586f74bf40ba5582085"
+      },
+      {
+        "path": "data/processed/historical_events_aviation_outcome_day.parquet",
+        "bytes": 756896,
+        "sha256": "622d52649ce942f7dee4daa8d2fea7a5f62889db99896ef7348a9f4bfc84cbf9"
+      },
+      {
+        "path": "data/processed/historical_events_aviation_enriched_daily.parquet",
+        "bytes": 1742265,
+        "sha256": "85623d49acd4810478006be6bd099385611a37745dba5ba344aa966c812a17d1"
+      },
+      {
+        "path": "data/processed/historical_events_aviation_control_pool.parquet",
+        "bytes": 870576,
+        "sha256": "54ef0b1e7aa0161a1ec47795fd7e16c536424e8eeaca8700c9c580e64e9cfc59"
+      },
+      {
+        "path": "data/processed/historical_events_aviation_control_matches.parquet",
+        "bytes": 971501,
+        "sha256": "49eb4cf791587fc110b10b36317e302aa1ece9c90d20ed5f15de6926cf585ca9"
+      },
+      {
+        "path": "data/processed/historical_events_aviation_cohort.parquet",
+        "bytes": 113534,
+        "sha256": "390c6d0ea0a552a50433dc69e9ee0205b42f0bbe9e7915f11cfa37e4bdfeccf4"
+      }
+    ],
+    "qa": {
+      "checks": {
+        "core_duplicate_event_id": 0,
+        "duplicate_source_record_id_in_core": 0,
+        "core_row_count": 26246,
+        "outcome_row_count": 997348,
+        "enriched_row_count": 997348,
+        "core_events_outside_spine_calendar_range": 0,
+        "enriched_null_primary_join_rows": 0,
+        "core_events_by_index_decade": {
+          "2000s": 3373,
+          "2010s": 14799,
+          "2020s": 8074
+        },
+        "core_events_by_fatalities_ge_1": 5316,
+        "core_events_hull_destroyed": 2901
+      },
+      "qa_semantics": {
+        "core_duplicate_event_id": "Must be 0.",
+        "duplicate_source_record_id_in_core": "Must be 0.",
+        "core_events_outside_spine_calendar_range": "Core rows flagged outside_spine.",
+        "enriched_null_primary_join_rows": "Enriched rows missing primary join."
+      },
+      "ingest_stats": {
+        "rows_events_table": 30516.0,
+        "rows_after_filters": 26246,
+        "dropped_not_acc": 2268,
+        "dropped_year": 0,
+        "dropped_bad_date": 0,
+        "dropped_bad_coords": 2002
+      }
+    },
+    "cohort_membership": {
+      "output_parquet": "data/processed/historical_events_aviation_cohort.parquet",
+      "derived_from": "historical_events_aviation_core (same build run)",
+      "core_row_count": 26246,
+      "cohort_build_version": "2",
+      "n_cohorts_defined": 3,
+      "membership_row_count_by_cohort_id": {
+        "ntsb_fatal_hull_destroyed_accident_2008_present": 2361,
+        "ntsb_hull_destroyed_nonfatal_2008_present": 540,
+        "ntsb_fatal_no_hull_destroy_2008_present": 2955
+      },
+      "total_membership_rows": 5856,
+      "cohort_definitions": [
+        {
+          "cohort_id": "ntsb_fatal_hull_destroyed_accident_2008_present",
+          "rule": "year>=2008 AND fatalities_total>=1 AND aircraft_hull_loss==True (DEST)"
+        },
+        {
+          "cohort_id": "ntsb_hull_destroyed_nonfatal_2008_present",
+          "rule": "year>=2008 AND fatalities_total==0 AND aircraft_hull_loss==True (DEST)"
+        },
+        {
+          "cohort_id": "ntsb_fatal_no_hull_destroy_2008_present",
+          "rule": "year>=2008 AND fatalities_total>=1 AND aircraft_hull_loss==False (no DEST)"
+        }
+      ]
+    }
+  },
+  "historical_events_political_shocks_build": {
+    "built_at_utc": "2026-05-05T21:06:47Z",
+    "generator": "scripts/build_historical_events_political_shocks.py",
+    "source_id": "powell_thyne_coups_final_txt_v1",
+    "inputs": [
+      {
+        "label": "powell_thyne_coups_final_txt",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/powell_thyne_coups_final.txt",
+        "bytes": 22089,
+        "sha256": "35fe8f0bc4788d905ef4d6ddb3a913469049299c6485c71b0ee7d80aec3a0b7a"
+      },
+      {
+        "label": "naturalearth_admin0_label_centroids_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_label_centroids_iso_a3.csv",
+        "bytes": 6192,
+        "sha256": "77c3a73961b36023b3a396515cf78754764a1cf2ed8303f6dfccc5fdd20ab5c4"
+      },
+      {
+        "label": "powell_thyne_ingest_manifest",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/ingest_manifest.json",
+        "bytes": 1732,
+        "sha256": "43a1dc98d6a8fa5dbcd4cfacb3aee89389aa237776673db7bb56c2701656d2c2"
+      },
+      {
+        "label": "celestial_daily_primary",
+        "path": "data/processed/celestial_daily_primary.parquet",
+        "bytes": 69913374,
+        "sha256": "de64d0132e26e72164abc4d5e70ddfb1ccccb272b5fd122a86d18b8790fa8555"
+      },
+      {
+        "label": "naturalearth_admin0_iso_centroid_supplement_v1_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_iso_centroid_supplement_v1.csv",
+        "bytes": 277,
+        "sha256": "569e662064cb6c612e526cd56fe753938e185b0d245170c85bad71f84a25672d"
+      },
+      {
+        "label": "cowcode_to_iso3166_alpha3_v1_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/cowcode_to_iso3166_alpha3_v1.csv",
+        "bytes": 402,
+        "sha256": "96aba712edbbbbfd7d922d22eca9659fbf5e0aeb60bf18c998cde9a3a97a8908"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "data/processed/historical_events_political_shocks_core.parquet",
+        "bytes": 42429,
+        "sha256": "efcea88459070c78e2f7d4c3fa13df6beb6581c4d880283c153178a6293309ca"
+      },
+      {
+        "path": "data/processed/historical_events_political_shocks_outcome_day.parquet",
+        "bytes": 34082,
+        "sha256": "0beb3e8ea14388a078f96c38f2975cad52ad9f8886c91f5ad90811de640bfbdb"
+      },
+      {
+        "path": "data/processed/historical_events_political_shocks_enriched_daily.parquet",
+        "bytes": 167900,
+        "sha256": "4ce76fface4be6520e703f1c69e302a8f7ce00bbf40ea270d62c4e232d48581c"
+      },
+      {
+        "path": "data/processed/historical_events_political_shocks_control_pool.parquet",
+        "bytes": 870576,
+        "sha256": "54ef0b1e7aa0161a1ec47795fd7e16c536424e8eeaca8700c9c580e64e9cfc59"
+      },
+      {
+        "path": "data/processed/historical_events_political_shocks_control_matches.parquet",
+        "bytes": 13585,
+        "sha256": "e237bce867aadaf55ca3d33d6b8f7f5d7c4a2a8b7023ac3cf25cf93416e818b8"
+      },
+      {
+        "path": "data/processed/historical_events_political_shocks_cohort.parquet",
+        "bytes": 9758,
+        "sha256": "89bfda1f3402043830b4e6f956e12cb5abae55c0380056bf13503d895ab88eb7"
+      }
+    ],
+    "qa": {
+      "checks": {
+        "core_duplicate_event_id": 0,
+        "duplicate_source_record_id_in_core": 0,
+        "core_row_count": 249,
+        "outcome_row_count": 9462,
+        "enriched_row_count": 9462,
+        "core_events_outside_spine_calendar_range": 0,
+        "enriched_null_primary_join_rows": 0,
+        "core_events_by_index_decade": {
+          "1950s": 30,
+          "1960s": 56,
+          "1970s": 47,
+          "1980s": 41,
+          "1990s": 39,
+          "2000s": 18,
+          "2010s": 11,
+          "2020s": 7
+        }
+      },
+      "qa_semantics": {
+        "core_duplicate_event_id": "Must be 0.",
+        "duplicate_source_record_id_in_core": "Must be 0.",
+        "core_events_outside_spine_calendar_range": "Core rows flagged outside_spine.",
+        "enriched_null_primary_join_rows": "Enriched rows missing primary join."
+      },
+      "ingest_stats": {
+        "rows_in_file": 497,
+        "dropped_not_successful_coup": 248,
+        "dropped_bad_date": 0,
+        "dropped_invalid_calendar": 0,
+        "rows_after_coup1_and_date_filters": 249,
+        "dropped_no_centroid_match": 0,
+        "recovered_via_cow_iso_geo_fallback": 12
+      }
+    },
+    "cohort_membership": {
+      "output_parquet": "data/processed/historical_events_political_shocks_cohort.parquet",
+      "derived_from": "historical_events_political_shocks_core (same build run)",
+      "core_row_count": 249,
+      "cohort_build_version": "3",
+      "n_cohorts_defined": 2,
+      "membership_row_count_by_cohort_id": {
+        "powell_thyne_successful_coup_onset_1950_present": 249,
+        "powell_thyne_successful_coup_onset_1990_present": 75
+      },
+      "total_membership_rows": 324,
+      "nested_cohort_note": "1990_present membership is a strict subset of 1950_present (same source rows, stricter year filter).",
+      "cohort_definitions": [
+        {
+          "cohort_id": "powell_thyne_successful_coup_onset_1950_present",
+          "rule": "coup==1 AND year>=1950 AND not outside_spine"
+        },
+        {
+          "cohort_id": "powell_thyne_successful_coup_onset_1990_present",
+          "rule": "coup==1 AND year>=1990 AND not outside_spine (nested subset of 1950_present)"
+        }
+      ]
+    }
+  },
+  "historical_events_conflict_onsets_build": {
+    "built_at_utc": "2026-05-06T08:06:59Z",
+    "generator": "scripts/build_historical_events_conflict_onsets.py",
+    "source_id": "ucdp_interstate_conflict_onset_csv_v251",
+    "inputs": [
+      {
+        "label": "ucdp_interstate_conflict_onset_csv_251",
+        "path": "data/raw/historical_events/ucdp_onset_interstate_v251/ucdp-interstate-conflict-onset-251.csv",
+        "bytes": 518514,
+        "sha256": "f17e1d5c18bdc6b4991f582e4f228c180d9ebf9ae3520551b50c101eb022225c"
+      },
+      {
+        "label": "ucdp_onset_ingest_manifest",
+        "path": "data/raw/historical_events/ucdp_onset_interstate_v251/ingest_manifest.json",
+        "bytes": 381,
+        "sha256": "27169c636c2e3b43619574067216481046fbbd107b50625d96b9389cc0b39b83"
+      },
+      {
+        "label": "naturalearth_admin0_label_centroids_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_label_centroids_iso_a3.csv",
+        "bytes": 6192,
+        "sha256": "77c3a73961b36023b3a396515cf78754764a1cf2ed8303f6dfccc5fdd20ab5c4"
+      },
+      {
+        "label": "celestial_daily_primary",
+        "path": "data/processed/celestial_daily_primary.parquet",
+        "bytes": 69913374,
+        "sha256": "de64d0132e26e72164abc4d5e70ddfb1ccccb272b5fd122a86d18b8790fa8555"
+      },
+      {
+        "label": "naturalearth_admin0_iso_centroid_supplement_v1_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_iso_centroid_supplement_v1.csv",
+        "bytes": 277,
+        "sha256": "569e662064cb6c612e526cd56fe753938e185b0d245170c85bad71f84a25672d"
+      },
+      {
+        "label": "ucdp_onset_ne_admin_supplement_v1_csv",
+        "path": "data/raw/historical_events/ucdp_onset_interstate_v251/ucdp_onset_ne_admin_supplement_v1.csv",
+        "bytes": 227,
+        "sha256": "1299a32dd3ff13d5b32c8412bfd1d9dc965fd60b380d8f3dfe52d19dae51f2ee"
+      },
+      {
+        "label": "ucdp_onset_display_name_to_ne_admin_v1_csv",
+        "path": "data/raw/historical_events/ucdp_onset_interstate_v251/ucdp_onset_display_name_to_ne_admin_v1.csv",
+        "bytes": 534,
+        "sha256": "a3d8667fb349946fd94400b4c89d2ca6825aaff25cd73e79025920c370c61215"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "data/processed/historical_events_conflict_onsets_core.parquet",
+        "bytes": 30027,
+        "sha256": "4713da26226561e2ff3581c610ba6dbb0b2670dbeac8393b47ac5d5f0a483eb1"
+      },
+      {
+        "path": "data/processed/historical_events_conflict_onsets_outcome_day.parquet",
+        "bytes": 10747,
+        "sha256": "3c796041ea19fe7a7c54c53d5b8560d45e3704afba0dd4444a7287c36f2ec6ca"
+      },
+      {
+        "path": "data/processed/historical_events_conflict_onsets_enriched_daily.parquet",
+        "bytes": 46725,
+        "sha256": "b461d626fcafea47463926862976ed25379c299920aa185b332f316caf9b7814"
+      },
+      {
+        "path": "data/processed/historical_events_conflict_onsets_control_pool.parquet",
+        "bytes": 870576,
+        "sha256": "54ef0b1e7aa0161a1ec47795fd7e16c536424e8eeaca8700c9c580e64e9cfc59"
+      },
+      {
+        "path": "data/processed/historical_events_conflict_onsets_control_matches.parquet",
+        "bytes": 7678,
+        "sha256": "d25ecc19f4a7b64597dd8052b7df677d27e5819d7c9f0801cbf67b45f0e2fe0d"
+      },
+      {
+        "path": "data/processed/historical_events_conflict_onsets_cohort.parquet",
+        "bytes": 6617,
+        "sha256": "1516c7317e68bdbb0b13d8647bc8ce1f6145cfd4a6469983f107e3fd391b45e4"
+      }
+    ],
+    "qa": {
+      "checks": {
+        "core_duplicate_event_id": 0,
+        "duplicate_source_record_id_in_core": 0,
+        "core_row_count": 109,
+        "outcome_row_count": 4142,
+        "enriched_row_count": 4142,
+        "core_events_outside_spine_calendar_range": 0,
+        "enriched_null_primary_join_rows": 0,
+        "core_events_by_index_decade": {
+          "1940s": 18,
+          "1950s": 7,
+          "1960s": 26,
+          "1970s": 16,
+          "1980s": 14,
+          "1990s": 8,
+          "2000s": 7,
+          "2010s": 4,
+          "2020s": 9
+        }
+      },
+      "qa_semantics": {
+        "core_duplicate_event_id": "Must be 0.",
+        "duplicate_source_record_id_in_core": "Must be 0.",
+        "core_events_outside_spine_calendar_range": "Core rows flagged outside_spine.",
+        "enriched_null_primary_join_rows": "Enriched rows missing primary join."
+      },
+      "ingest_stats": {
+        "rows_in_file": 12558,
+        "rows_after_newconf_eq_1": 109,
+        "dropped_missing_conflict_id": 0,
+        "rows_ready_for_geo": 109,
+        "dropped_no_centroid_match": 0,
+        "core_rows_emitted": 109
+      }
+    },
+    "cohort_membership": {
+      "output_parquet": "data/processed/historical_events_conflict_onsets_cohort.parquet",
+      "derived_from": "historical_events_conflict_onsets_core (same build run)",
+      "core_row_count": 109,
+      "cohort_build_version": "1",
+      "n_cohorts_defined": 1,
+      "membership_row_count_by_cohort_id": {
+        "ucdp_interstate_newconf_onset_1950_present": 91
+      },
+      "total_membership_rows": 91,
+      "charter_path": "data/raw/historical_events/ucdp_onset_interstate_v251/CHARTER_v1.md",
+      "cohort_definitions": [
+        {
+          "cohort_id": "ucdp_interstate_newconf_onset_1950_present",
+          "rule": "newconf-equivalent rows, year>=1950, not outside_spine"
+        }
+      ]
+    }
+  },
+  "historical_events_terror_attacks_build": {
+    "built_at_utc": "2026-05-07T11:24:24Z",
+    "generator": "scripts/build_historical_events_terror_attacks.py",
+    "source_id": "gtd_global_terrorism_database_csv_cached_v1",
+    "inputs": [
+      {
+        "label": "gtd_import_csv",
+        "path": "data/raw/historical_events/gtd_global_terrorism_database_cached/v1/globalterrorismdb_import.csv",
+        "bytes": 199786459,
+        "sha256": "852d62ec135d3b5446c405be2eca0108023a0e18a5e063522e006c1de8b8d7d9"
+      },
+      {
+        "label": "gtd_ingest_manifest",
+        "path": "data/raw/historical_events/gtd_global_terrorism_database_cached/v1/ingest_manifest.json",
+        "bytes": 898,
+        "sha256": "ef059bbd12f1df201f49c1b9d11a84432f69bc2b642a810c16a524079ab254cc"
+      },
+      {
+        "label": "naturalearth_admin0_label_centroids_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_label_centroids_iso_a3.csv",
+        "bytes": 6192,
+        "sha256": "77c3a73961b36023b3a396515cf78754764a1cf2ed8303f6dfccc5fdd20ab5c4"
+      },
+      {
+        "label": "celestial_daily_primary",
+        "path": "data/processed/celestial_daily_primary.parquet",
+        "bytes": 69913374,
+        "sha256": "de64d0132e26e72164abc4d5e70ddfb1ccccb272b5fd122a86d18b8790fa8555"
+      },
+      {
+        "label": "naturalearth_admin0_iso_centroid_supplement_v1_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_iso_centroid_supplement_v1.csv",
+        "bytes": 277,
+        "sha256": "569e662064cb6c612e526cd56fe753938e185b0d245170c85bad71f84a25672d"
+      },
+      {
+        "label": "cowcode_to_iso3166_alpha3_v1_csv",
+        "path": "data/raw/historical_events/powell_thyne_jpr2011/v1/cowcode_to_iso3166_alpha3_v1.csv",
+        "bytes": 402,
+        "sha256": "96aba712edbbbbfd7d922d22eca9659fbf5e0aeb60bf18c998cde9a3a97a8908"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "data/processed/historical_events_terror_attacks_core.parquet",
+        "bytes": 242137,
+        "sha256": "fb7104ef32216234476e04a9e2adbb47cd721c9ee3d499c1788b472141007f22"
+      },
+      {
+        "path": "data/processed/historical_events_terror_attacks_outcome_day.parquet",
+        "bytes": 145398,
+        "sha256": "f86b6920a9d7a9f25948f2e275e436280abb084a3d3275d331312926703511fe"
+      },
+      {
+        "path": "data/processed/historical_events_terror_attacks_enriched_daily.parquet",
+        "bytes": 540697,
+        "sha256": "7adc3ad31d5e62b4803654cec9e3d609495c5419e6a8ea903e122704483c4b61"
+      },
+      {
+        "path": "data/processed/historical_events_terror_attacks_control_pool.parquet",
+        "bytes": 870576,
+        "sha256": "54ef0b1e7aa0161a1ec47795fd7e16c536424e8eeaca8700c9c580e64e9cfc59"
+      },
+      {
+        "path": "data/processed/historical_events_terror_attacks_control_matches.parquet",
+        "bytes": 97859,
+        "sha256": "4ec58b49366967f5530d9849f27de4c7ba4af16aaee0b251ff6fe14480c6cb43"
+      },
+      {
+        "path": "data/processed/historical_events_terror_attacks_cohort.parquet",
+        "bytes": 54507,
+        "sha256": "bd46bacd001f75850c1e602bd6ec2364fe196dddf6a39d2f410ae4a1aa9d0078"
+      }
+    ],
+    "qa": {
+      "checks": {
+        "core_duplicate_event_id": 0,
+        "duplicate_source_record_id_in_core": 0,
+        "core_row_count": 2570,
+        "outcome_row_count": 97660,
+        "enriched_row_count": 97660,
+        "core_events_outside_spine_calendar_range": 0,
+        "enriched_null_primary_join_rows": 0
+      },
+      "qa_semantics": {
+        "core_duplicate_event_id": "Must be 0.",
+        "duplicate_source_record_id_in_core": "Must be 0.",
+        "core_events_outside_spine_calendar_range": "Core rows flagged outside_spine.",
+        "enriched_null_primary_join_rows": "Enriched rows missing primary join."
+      },
+      "ingest_stats": {
+        "rows_in_file": 214716,
+        "dropped_doubtterr_not_zero": 50172,
+        "dropped_extended_not_zero": 11299,
+        "dropped_bad_month_day": 557,
+        "dropped_year_before_min": 0,
+        "dropped_nkill_unknown_or_below_threshold": 151790,
+        "dropped_invalid_calendar": 0,
+        "rows_after_charter_filters": 2616,
+        "dropped_duplicate_gtd_eventid_keep_first": 43,
+        "dropped_no_country_centroid_match": 3,
+        "rows_used_gtd_coordinates": 2494,
+        "rows_used_natural_earth_centroid_fallback": 76
+      }
+    },
+    "cohort_membership": {
+      "output_parquet": "data/processed/historical_events_terror_attacks_cohort.parquet",
+      "derived_from": "historical_events_terror_attacks_core (same build run)",
+      "core_row_count": 2570,
+      "cohort_build_version": "2",
+      "n_cohorts_defined": 3,
+      "membership_row_count_by_cohort_id": {
+        "gtd_major_fatal_incident_1970_present": 2570,
+        "gtd_severe_fatal_incident_nkill50_1970_present": 530,
+        "gtd_major_fatal_incident_native_coords_1970_present": 2494
+      },
+      "total_membership_rows": 5594,
+      "cohort_definitions": [
+        {
+          "cohort_id": "gtd_major_fatal_incident_1970_present",
+          "rule": "CHARTER_v1: doubtterr==0 AND extended==0 AND day-known AND nkill>=20 AND iyear>=1970; NOT quality_flags contains 'outside_spine'",
+          "n_members": 2570
+        },
+        {
+          "cohort_id": "gtd_severe_fatal_incident_nkill50_1970_present",
+          "rule": "CHARTER_v1: doubtterr==0 AND extended==0 AND day-known AND nkill>=20 AND iyear>=1970; NOT quality_flags contains 'outside_spine'; terror_nkill >= 50",
+          "n_members": 530
+        },
+        {
+          "cohort_id": "gtd_major_fatal_incident_native_coords_1970_present",
+          "rule": "CHARTER_v1: doubtterr==0 AND extended==0 AND day-known AND nkill>=20 AND iyear>=1970; NOT quality_flags contains 'outside_spine'; terror_geo_match_kind == 'terror_geo_gtd_coordinates'",
+          "n_members": 2494
+        }
+      ]
+    }
+  }
+}

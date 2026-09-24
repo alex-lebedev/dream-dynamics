@@ -1,0 +1,22 @@
+{
+  "output_parquet": "data/processed/historical_events_control_pool.parquet",
+  "rows": 1077480,
+  "notes": {
+    "weekday": "Monday=0 .. Sunday=6 from int(floor(jd_ut+0.5)) % 7 on the spine (matches Python weekday for modern dates).",
+    "eligibility": "All distinct calendar_date values from celestial_daily_primary."
+  },
+  "columns": [
+    {
+      "name": "calendar_date",
+      "dtype": "object"
+    },
+    {
+      "name": "month",
+      "dtype": "int16"
+    },
+    {
+      "name": "weekday",
+      "dtype": "int16"
+    }
+  ]
+}

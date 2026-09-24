@@ -1,0 +1,30 @@
+{
+  "name": "mallett_reddit_dreams",
+  "source": "Reddit r/Dreams posts (Mallett 2020 collection; Pushshift/Academic Torrents). 'selftext' = dream post.",
+  "license": "Research use; do not redistribute raw text. Reddit content; cite Mallett (2020).",
+  "sensitivity": "S2",
+  "retrieved": "2026-07-19",
+  "notes": "Public Reddit r/Dreams posts with pseudonymous 'author' + 'created_utc'. CAVEATS: authors are handles (not verified identities); reposts/paraphrases exist (near-duplicate guard applied in F0013); self-selected platform. Used by F0013 (biometric replication) + F0022 (universal-motif).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/raw/mallett/r-dreams.csv",
+  "bytes": 79494532,
+  "size": "75.8MB",
+  "sha256": "534900dab99ad08226a353ac049bcee55489d7721c2517d2794f70fe4d74e9f8",
+  "columns": [
+    "created",
+    "created_utc",
+    "subreddit",
+    "subreddit_id",
+    "id",
+    "author",
+    "author_fullname",
+    "link_flair_text",
+    "num_comments",
+    "total_awards_received",
+    "score",
+    "upvote_ratio",
+    "is_video",
+    "title",
+    "selftext"
+  ],
+  "n_columns": 15
+}

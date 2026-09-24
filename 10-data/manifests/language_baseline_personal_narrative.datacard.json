@@ -1,0 +1,17 @@
+{
+  "name": "language_baseline_personal_narrative",
+  "role": "control",
+  "source": "https://huggingface.co/datasets/SocialGrep/one-million-reddit-confessions (converted parquet shard, refs/convert/parquet/default/train)",
+  "license": "CC-BY-4.0 (SocialGrep); Reddit content subject to Reddit User Agreement — do not re-host raw text",
+  "sensitivity": "S1",
+  "retrieved": "2026-08-20",
+  "local_path": "10-data/external/language_baselines/personal-narrative.csv",
+  "bytes": 18005972,
+  "sha256": "a9b405fd937536e633f96bca7879fc320dbc327424cdda437b616979fbec7deb",
+  "rows": 12000,
+  "columns": ["text", "author", "source"],
+  "coverage": "12,000 r/confession(+adjacent) posts, randomly sampled from a 340,000-row shard; median 1,018 characters (min 300)",
+  "notes": "First-person written accounts of real personal events — the closest WAKING analogue to a dream report in person, tense and register. Used ONLY as a matched natural-language comparator for the intrinsic-dimension and percolation estimators, so that the geometry claims are benchmarked against ordinary human language and not only against synthetic nulls.",
+  "caveats": "Self-selected, English, Reddit-specific register. Posts marked [removed]/[deleted] were dropped. `author` holds the post id, not the Reddit username, so the file carries no account identifier. Documents are far longer than the 256-character embedding window, so the geometry script also runs a LENGTH-MATCHED variant that truncates each document to a character count drawn from the Dreamseer English distribution.",
+  "used_by": ["analyses/2026-08-20-04-geometry-language-baseline.py"]
+}

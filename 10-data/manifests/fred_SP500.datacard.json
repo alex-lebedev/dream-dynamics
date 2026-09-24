@@ -1,0 +1,15 @@
+{
+  "name": "fred_SP500",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "FRED series SP500",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_SP500.csv",
+  "bytes": 47528,
+  "size": "46.4KB",
+  "sha256": "6b169bd4f22383e76dd1a40ad99ea6fc1d5a5a0f50d51576cd7a6c0995ea5ce9",
+  "rows": 2513,
+  "date_min": "2016-07-18",
+  "date_max": "2026-07-16"
+}

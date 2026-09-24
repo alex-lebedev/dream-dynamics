@@ -1,0 +1,8 @@
+{
+  "name": "dataset_sddb",
+  "source": "zenodo:11662063",
+  "license": "research (cite Bulkeley)",
+  "sensitivity": "S2",
+  "retrieved": "2026-07-18",
+  "notes": "Sleep & Dream Database full mirror (Mallett) | title: Sleep and Dream Database"
+}

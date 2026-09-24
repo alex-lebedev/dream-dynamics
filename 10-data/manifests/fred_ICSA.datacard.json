@@ -1,0 +1,20 @@
+{
+  "name": "fred_ICSA",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ICSA",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series ICSA | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_ICSA.csv",
+  "bytes": 55939,
+  "size": "54.6KB",
+  "sha256": "cf3fc57d7e6f9c30d87cb4eb678c95e06f0789ab6d5b0c5d4e3c94b676ea9fc3",
+  "rows": 3106,
+  "date_min": "1967-01-07",
+  "date_max": "2026-07-11",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "Initial jobless claims, seasonally adjusted; WEEKLY; level (persons)."
+}

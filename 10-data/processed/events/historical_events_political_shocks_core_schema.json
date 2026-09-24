@@ -1,0 +1,144 @@
+{
+  "output_parquet": "data/processed/historical_events_political_shocks_core.parquet",
+  "source_txt": "data/raw/historical_events/powell_thyne_jpr2011/v1/powell_thyne_coups_final.txt",
+  "centroid_csv": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_label_centroids_iso_a3.csv",
+  "ingest_manifest": "data/raw/historical_events/powell_thyne_jpr2011/v1/ingest_manifest.json",
+  "rows": 249,
+  "notes": {
+    "event_family_v1": "political_shock",
+    "event_subtype_v1": "irregular_executive_transition_success",
+    "source_id": "powell_thyne_coups_final_txt_v1",
+    "analysis_calendar_date": "Index day = Y-M-D from source; origin_time_utc fixed to 12:00:00Z on that calendar day (daily spine contract; not claim of true coup clock time).",
+    "v1_coup_scope": "Only coup==1 (successful) rows ingested; coup==2 failed attempts never appear in core.",
+    "geography": "Lat/lon from Natural Earth 110m admin LABEL_X/LABEL_Y (exact/fuzzy admin name), optional ISO supplement CSV, or COW-code\u2192ISO fallback to the same centroid table; map-label points, not verified coup venues.",
+    "deduplication_v1": "dedupe_cluster_id equals event_id; source_record_id includes raw row index.",
+    "quality_flags": "outside_spine; political_geo_fuzzy_match (difflib); political_geo_cow_iso_fallback + audit slug when country string unmatched but COW ccode maps to ISO with a centroid.",
+    "ingest_policy": "Successful coups with valid calendar + at least one geo path (admin/supplement/COW\u2192ISO); otherwise dropped."
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "event_family",
+      "dtype": "object"
+    },
+    {
+      "name": "event_subtype",
+      "dtype": "object"
+    },
+    {
+      "name": "time_semantics",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_start",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_end",
+      "dtype": "object"
+    },
+    {
+      "name": "date_precision",
+      "dtype": "object"
+    },
+    {
+      "name": "original_date_text",
+      "dtype": "object"
+    },
+    {
+      "name": "original_calendar_system",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_method_id",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_confidence",
+      "dtype": "object"
+    },
+    {
+      "name": "place_name",
+      "dtype": "object"
+    },
+    {
+      "name": "country_iso3166_1_alpha3",
+      "dtype": "object"
+    },
+    {
+      "name": "latitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "longitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude_type",
+      "dtype": "object"
+    },
+    {
+      "name": "depth_km",
+      "dtype": "float64"
+    },
+    {
+      "name": "origin_time_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "review_status",
+      "dtype": "object"
+    },
+    {
+      "name": "source_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_record_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_url",
+      "dtype": "object"
+    },
+    {
+      "name": "ingested_at_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "dedupe_cluster_id",
+      "dtype": "object"
+    },
+    {
+      "name": "is_canonical_row",
+      "dtype": "bool"
+    },
+    {
+      "name": "quality_flags",
+      "dtype": "object"
+    },
+    {
+      "name": "political_cowcode",
+      "dtype": "int64"
+    },
+    {
+      "name": "political_coup_outcome_code",
+      "dtype": "int64"
+    },
+    {
+      "name": "political_dataset_version",
+      "dtype": "object"
+    },
+    {
+      "name": "political_geo_match_kind",
+      "dtype": "object"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "fred_STLFSI4",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=STLFSI4",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series STLFSI4 | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_STLFSI4.csv",
+  "bytes": 31492,
+  "size": "30.8KB",
+  "sha256": "67b47d65c7d737d7b5cc19131a89d15b8908cccfbaa02270e52fe7c58237c029",
+  "rows": 1698,
+  "date_min": "1993-12-31",
+  "date_max": "2026-07-10",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "St.Louis Fed Financial Stress Index v4; WEEKLY; revised; higher=more stress."
+}

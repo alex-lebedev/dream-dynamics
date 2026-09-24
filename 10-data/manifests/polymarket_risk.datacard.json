@@ -1,0 +1,22 @@
+{
+  "name": "polymarket_risk",
+  "source": "https://gamma-api.polymarket.com + https://clob.polymarket.com/prices-history",
+  "license": "public API (Polymarket)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "Daily implied probabilities for recession/geopolitical-risk markets. No key. Caveat: market set is dynamic; coverage varies by market lifetime.",
+  "caveats": "NOT USED in barometer-v3 (F0046): the keyword query returned only 3 markets, mostly off-topic (sports) with a 2026-Q2-only window — far too short/misaligned to overlap the 2024-03+ dream window. Retained only as an exploratory artifact; needs closed-market history + curated recession/geopolitics market IDs to be usable.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/polymarket_risk.csv",
+  "bytes": 18076,
+  "size": "17.7KB",
+  "sha256": "558a14f4d86206cec1e6ee0df88f76a12565b3e1735ca09bb2dc84cc59f58dc5",
+  "rows": 207,
+  "columns": [
+    "date",
+    "p",
+    "question"
+  ],
+  "markets": 3,
+  "date_min": "2026-03-27",
+  "date_max": "2026-07-20"
+}

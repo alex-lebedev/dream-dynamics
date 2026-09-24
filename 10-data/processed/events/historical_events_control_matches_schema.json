@@ -1,0 +1,29 @@
+{
+  "output_parquet": "data/processed/historical_events_control_matches.parquet",
+  "rows": 17844,
+  "notes": {
+    "matching_method": "same_month_same_weekday: closest spine day by |jd_ut - jd_ut_index|; tie-break lexicographic calendar_date; empty control_calendar_date if no candidate."
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "control_calendar_date",
+      "dtype": "object"
+    },
+    {
+      "name": "match_id",
+      "dtype": "object"
+    },
+    {
+      "name": "matching_method",
+      "dtype": "object"
+    },
+    {
+      "name": "matched_on",
+      "dtype": "object"
+    }
+  ]
+}

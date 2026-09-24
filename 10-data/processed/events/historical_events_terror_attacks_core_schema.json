@@ -1,0 +1,151 @@
+{
+  "output_parquet": "data/processed/historical_events_terror_attacks_core.parquet",
+  "source_csv": "data/raw/historical_events/gtd_global_terrorism_database_cached/v1/globalterrorismdb_import.csv",
+  "centroid_csv": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_label_centroids_iso_a3.csv",
+  "ingest_manifest": "data/raw/historical_events/gtd_global_terrorism_database_cached/v1/ingest_manifest.json",
+  "rows": 2570,
+  "notes": {
+    "event_family_v1": "terror_attack",
+    "event_subtype_v1": "terrorism_mass_casualty_attack_gtd_v1",
+    "source_id": "gtd_global_terrorism_database_csv_cached_v1",
+    "analysis_calendar_date": "Index day = GTD iyear/imonth/iday; origin_time_utc = 12:00:00Z (daily spine contract).",
+    "charter": "data/raw/historical_events/gtd_global_terrorism_database_cached/v1/CHARTER_v1.md",
+    "inclusion_v1": "doubtterr==0, extended==0, imonth>=1, iday>=1, iyear>=1970, nkill>=20, valid calendar, geo via GTD coordinates when valid else Natural Earth country centroid (same NE contract as political shocks).",
+    "magnitude_field_semantics": "magnitude duplicates terror_nkill for cross-family enriched_daily severity joins.",
+    "deduplication_v1": "dedupe_cluster_id equals event_id; source_record_id = gtd|{eventid}."
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "event_family",
+      "dtype": "object"
+    },
+    {
+      "name": "event_subtype",
+      "dtype": "object"
+    },
+    {
+      "name": "time_semantics",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_start",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_end",
+      "dtype": "object"
+    },
+    {
+      "name": "date_precision",
+      "dtype": "object"
+    },
+    {
+      "name": "original_date_text",
+      "dtype": "object"
+    },
+    {
+      "name": "original_calendar_system",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_method_id",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_confidence",
+      "dtype": "object"
+    },
+    {
+      "name": "place_name",
+      "dtype": "object"
+    },
+    {
+      "name": "country_iso3166_1_alpha3",
+      "dtype": "object"
+    },
+    {
+      "name": "latitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "longitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude_type",
+      "dtype": "object"
+    },
+    {
+      "name": "depth_km",
+      "dtype": "float64"
+    },
+    {
+      "name": "origin_time_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "review_status",
+      "dtype": "object"
+    },
+    {
+      "name": "source_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_record_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_url",
+      "dtype": "object"
+    },
+    {
+      "name": "ingested_at_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "dedupe_cluster_id",
+      "dtype": "object"
+    },
+    {
+      "name": "is_canonical_row",
+      "dtype": "bool"
+    },
+    {
+      "name": "quality_flags",
+      "dtype": "object"
+    },
+    {
+      "name": "terror_gtd_eventid",
+      "dtype": "object"
+    },
+    {
+      "name": "terror_nkill",
+      "dtype": "float64"
+    },
+    {
+      "name": "terror_nwound",
+      "dtype": "float64"
+    },
+    {
+      "name": "terror_doubtterr",
+      "dtype": "int64"
+    },
+    {
+      "name": "terror_extended",
+      "dtype": "int64"
+    },
+    {
+      "name": "terror_geo_match_kind",
+      "dtype": "object"
+    }
+  ]
+}

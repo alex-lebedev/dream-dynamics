@@ -1,0 +1,20 @@
+{
+  "name": "fred_T10YIE",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10YIE",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series T10YIE | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_T10YIE.csv",
+  "bytes": 93684,
+  "size": "91.5KB",
+  "sha256": "ecb60d3035c065371f0d2a5d27f58968496d1dfa80c0082db54012c41cf0be11",
+  "rows": 5889,
+  "date_min": "2003-01-02",
+  "date_max": "2026-07-17",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "10-yr breakeven inflation (market-implied); DAILY; percent; missing on non-trading days."
+}

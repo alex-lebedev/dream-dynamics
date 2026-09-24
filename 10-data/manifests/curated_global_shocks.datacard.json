@@ -1,0 +1,20 @@
+{
+  "name": "curated_global_shocks",
+  "source": "hand-curated from major-news year-in-review timelines (AP/Reuters/Euronews/Wikipedia/CFR), salience-screened",
+  "license": "public (event dates/facts)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-21",
+  "notes": "High-salience, globally-in-awareness 2024-2026 shocks for the forward event-study. Dates are the primary news-breaking day (UTC).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/processed/events/curated_global_shocks.csv",
+  "bytes": 626,
+  "size": "626.0B",
+  "sha256": "ef68bb3a4bd04e325aa672aa35e216a5018428bf25e90ce51bfed038fe3d0d72",
+  "rows": 10,
+  "columns": [
+    "date",
+    "label",
+    "category",
+    "cohorts"
+  ],
+  "caveats": "Curation is judgment-based (selection); 'threat' subset (war/violence/econ) is the pre-specified primary cohort. Dates for fast-moving events = first dominant-news day. Population is multinational so 'awareness' is assumed, not measured (GDELT-coverage weighting is the upgrade)."
+}

@@ -1,0 +1,22 @@
+{
+  "name": "manifold_risk",
+  "source": "https://api.manifold.markets/v0 (search-markets + bets)",
+  "license": "Manifold API (open)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "Daily implied probability for recession/geopolitical-risk markets (play-money crowd forecasts). No key.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/manifold_risk.csv",
+  "bytes": 110567,
+  "size": "108.0KB",
+  "sha256": "76f97b04fca34ded9d8438d542eba33a38d4a1554588c6958a16e005eec0717f",
+  "rows": 1251,
+  "markets": 11,
+  "columns": [
+    "date",
+    "p",
+    "market"
+  ],
+  "date_min": "2022-07-29",
+  "date_max": "2026-07-20",
+  "caveats": "Manifold is PLAY-money (Mana), not real-money \u2014 crowd belief proxy, thinner liquidity than Polymarket/Kalshi. Market set is hand-seeded by keyword; daily prob = last trade of day."
+}

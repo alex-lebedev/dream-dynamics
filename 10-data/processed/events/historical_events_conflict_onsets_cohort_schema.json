@@ -1,0 +1,37 @@
+{
+  "output_parquet": "data/processed/historical_events_conflict_onsets_cohort.parquet",
+  "source_core": "data/processed/historical_events_conflict_onsets_core.parquet",
+  "rows": 91,
+  "notes": {
+    "purpose": "Frozen interstate onset cohort (long). Join on event_id.",
+    "cohort_build_version": "1",
+    "cohorts_defined": [
+      {
+        "cohort_id": "ucdp_interstate_newconf_onset_1950_present",
+        "rule": "newconf-equivalent rows, year>=1950, not outside_spine"
+      }
+    ]
+  },
+  "columns": [
+    {
+      "name": "cohort_id",
+      "dtype": "object"
+    },
+    {
+      "name": "cohort_name",
+      "dtype": "object"
+    },
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "inclusion_rule_summary",
+      "dtype": "object"
+    },
+    {
+      "name": "created_at_utc",
+      "dtype": "object"
+    }
+  ]
+}

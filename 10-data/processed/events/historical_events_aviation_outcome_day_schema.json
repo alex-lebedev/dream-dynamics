@@ -1,0 +1,32 @@
+{
+  "output_parquet": "data/processed/historical_events_aviation_outcome_day.parquet",
+  "source_core": "data/processed/historical_events_aviation_core.parquet",
+  "rows": 997348,
+  "notes": {
+    "offsets_inclusive": [
+      -7,
+      30
+    ],
+    "role_index": "index at offset_days==0",
+    "role_window": "exposure_window for nonzero offsets",
+    "parity": "Same outcome window as earthquake historical_events_outcome_day (-7..+30)."
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date",
+      "dtype": "object"
+    },
+    {
+      "name": "offset_days",
+      "dtype": "int64"
+    },
+    {
+      "name": "role",
+      "dtype": "object"
+    }
+  ]
+}

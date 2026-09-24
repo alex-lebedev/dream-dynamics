@@ -1,0 +1,15 @@
+{
+  "name": "fred_DFF",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFF",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "FRED series DFF",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_DFF.csv",
+  "bytes": 417242,
+  "size": "407.5KB",
+  "sha256": "f196aa3f2a91383b32d8a083d5289601f8cb64c6073f40c40421f2dd9ca2acc5",
+  "rows": 26314,
+  "date_min": "1954-07-01",
+  "date_max": "2026-07-16"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "fred_UMCSENT",
+  "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UMCSENT",
+  "license": "public (FRED/St. Louis Fed)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-20",
+  "notes": "FRED series UMCSENT | multi-domain barometer input (F0039).",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/fred_UMCSENT.csv",
+  "bytes": 10840,
+  "size": "10.6KB",
+  "sha256": "e061046151d25d3c5ae5dde7480b2b097b5cc3ad915ff20d9825068bafff5ac7",
+  "rows": 673,
+  "date_min": "1952-11-01",
+  "date_max": "2026-05-01",
+  "columns": [
+    "date",
+    "value"
+  ],
+  "caveats": "U.Michigan Consumer Sentiment; MONTHLY; index (higher=more optimistic)."
+}

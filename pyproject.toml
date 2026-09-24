@@ -9,7 +9,7 @@ description = "Dreams as a window into collective mood and societal dynamics."
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{ name = "Alexander V. Lebedev" }]
-license = { text = "Proprietary — private research repository" }
+license = { text = "MIT (code); CC BY 4.0 (prose, figures, videos) — see LICENSE and LICENSE-CONTENT.md" }
 
 dependencies = [
     "pandas>=1.5",

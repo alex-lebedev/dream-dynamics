@@ -1,0 +1,31 @@
+{
+  "output_parquet": "data/processed/historical_events_outcome_day.parquet",
+  "source_core": "data/processed/historical_events_core.parquet",
+  "rows": 678072,
+  "notes": {
+    "offsets_inclusive": [
+      -7,
+      30
+    ],
+    "role_index": "index at offset_days==0",
+    "role_window": "exposure_window for nonzero offsets"
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date",
+      "dtype": "object"
+    },
+    {
+      "name": "offset_days",
+      "dtype": "int64"
+    },
+    {
+      "name": "role",
+      "dtype": "object"
+    }
+  ]
+}

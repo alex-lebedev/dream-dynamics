@@ -1,0 +1,140 @@
+{
+  "output_parquet": "data/processed/historical_events_conflict_onsets_core.parquet",
+  "source_csv": "data/raw/historical_events/ucdp_onset_interstate_v251/ucdp-interstate-conflict-onset-251.csv",
+  "centroid_csv": "data/raw/historical_events/powell_thyne_jpr2011/v1/naturalearth_admin0_label_centroids_iso_a3.csv",
+  "ingest_manifest": "data/raw/historical_events/ucdp_onset_interstate_v251/ingest_manifest.json",
+  "rows": 109,
+  "notes": {
+    "event_family_v1": "armed_conflict",
+    "event_subtype_v1": "interstate_new_episode_onset_ucdp_v251",
+    "source_id": "ucdp_interstate_conflict_onset_csv_v251",
+    "charter": "data/raw/historical_events/ucdp_onset_interstate_v251/CHARTER_v1.md",
+    "analysis_calendar_date": "Index day = Jan 1 of UCDP onset year; origin_time_utc = noon UTC (daily spine; not claimed calendar day of first shot).",
+    "v1_scope": "Interstate Conflict Level Onset CSV; newconf==1 only; no intrastate file; no intervals.",
+    "geography": "Natural Earth label centroids (+ political-bundle ISO supplement). No GWN\u2192ISO (Gleditsch \u2260 COW).",
+    "date_precision": "year for all v1 rows; see quality_flags.",
+    "quality_flags": "ucdp_onset_index_jan1_of_onset_year; conflict_geo_*; outside_spine when index date off spine."
+  },
+  "columns": [
+    {
+      "name": "event_id",
+      "dtype": "object"
+    },
+    {
+      "name": "event_family",
+      "dtype": "object"
+    },
+    {
+      "name": "event_subtype",
+      "dtype": "object"
+    },
+    {
+      "name": "time_semantics",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_start",
+      "dtype": "object"
+    },
+    {
+      "name": "calendar_date_end",
+      "dtype": "object"
+    },
+    {
+      "name": "date_precision",
+      "dtype": "object"
+    },
+    {
+      "name": "original_date_text",
+      "dtype": "object"
+    },
+    {
+      "name": "original_calendar_system",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_method_id",
+      "dtype": "object"
+    },
+    {
+      "name": "normalization_confidence",
+      "dtype": "object"
+    },
+    {
+      "name": "place_name",
+      "dtype": "object"
+    },
+    {
+      "name": "country_iso3166_1_alpha3",
+      "dtype": "object"
+    },
+    {
+      "name": "latitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "longitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude",
+      "dtype": "float64"
+    },
+    {
+      "name": "magnitude_type",
+      "dtype": "object"
+    },
+    {
+      "name": "depth_km",
+      "dtype": "float64"
+    },
+    {
+      "name": "origin_time_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "review_status",
+      "dtype": "object"
+    },
+    {
+      "name": "source_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_record_id",
+      "dtype": "object"
+    },
+    {
+      "name": "source_url",
+      "dtype": "object"
+    },
+    {
+      "name": "ingested_at_utc",
+      "dtype": "object"
+    },
+    {
+      "name": "dedupe_cluster_id",
+      "dtype": "object"
+    },
+    {
+      "name": "is_canonical_row",
+      "dtype": "bool"
+    },
+    {
+      "name": "quality_flags",
+      "dtype": "object"
+    },
+    {
+      "name": "conflict_ucdp_conflict_id",
+      "dtype": "int64"
+    },
+    {
+      "name": "conflict_ucdp_gwno",
+      "dtype": "int64"
+    },
+    {
+      "name": "conflict_geo_match_kind",
+      "dtype": "object"
+    }
+  ]
+}

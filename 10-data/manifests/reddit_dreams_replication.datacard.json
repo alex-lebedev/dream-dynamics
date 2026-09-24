@@ -1,0 +1,22 @@
+{
+  "name": "reddit_dreams_replication",
+  "source": "Reddit r/Dreams + r/Nightmares via pullpush.io (no-key archive)",
+  "license": "Reddit content (public); pullpush archive",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-21",
+  "notes": "Weekly lexicon-proxy dream-content rates (fear/danger/war/emo-density) from a ~100-post/week sample; independent-dataset replication of F0053 hits. Aggregate rates only \u2014 NO post text or usernames committed.",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/60-results/showcase/reddit_dreams_weekly.csv",
+  "bytes": 403,
+  "size": "403.0B",
+  "sha256": "c3cafe8e70b6c9ebeccc425b85114b584d8c72e5fcb558657658e539514c98a4",
+  "n_weeks": 6,
+  "columns": [
+    "date",
+    "n_posts",
+    "fear_rate",
+    "danger_rate",
+    "war_rate",
+    "emo_density"
+  ],
+  "caveats": "sampled (~100/wk, not exhaustive); lexicon proxies (no negation/context) \u2260 DreamSeer model metrics; r/Dreams selection differs from the DreamSeer app population."
+}

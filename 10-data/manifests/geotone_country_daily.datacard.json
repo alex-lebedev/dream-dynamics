@@ -1,0 +1,13 @@
+{
+  "name": "geotone_country_daily",
+  "source": "https://huggingface.co/datasets/davidcummings/geotone-global-news-signals/resolve/main/country_daily.csv",
+  "license": "CC BY 4.0 (Geotone/GDELT)",
+  "sensitivity": "S0",
+  "retrieved": "2026-07-18",
+  "notes": "GDELT-derived daily news tone/attention",
+  "local_path": "/Users/alebedev/GitHub/psychohistory/10-data/external/signals/geotone_country_daily.csv",
+  "bytes": 2270301,
+  "size": "2.2MB",
+  "sha256": "82c1df6e24d863af2fa1f45f7390a403a7b6ccf93f962cccde2a794aeb3f4c06",
+  "rows": 37037
+}

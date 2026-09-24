@@ -1,0 +1,10 @@
+archetype,prevalence,sentiment,trend_per_mo,en_prev,ru_prev
+Great Mother (nurture/home),0.159,-0.254,-0.00019,0.198,0.003
+Technogenic (modern),0.142,-0.268,-0.00071,0.176,0.003
+Hero's Journey (transition),0.131,-0.271,-0.00135,0.162,0.003
+Shadow (threat/repressed),0.092,-0.365,-0.00013,0.114,0.002
+Water / Unconscious,0.086,-0.228,-0.00104,0.107,0.002
+Instinct / Animals,0.063,-0.289,-0.00044,0.078,0.001
+Death & Rebirth,0.052,-0.353,-0.00072,0.064,0.001
+Self / Transcendence,0.038,-0.153,-0.0009,0.048,0.001
+Eros / Union,0.036,-0.195,-0.00068,0.045,0.001
